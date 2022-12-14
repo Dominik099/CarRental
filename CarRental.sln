@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{11F041CB-339E-48CA-B9E9-8A08150F0E1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{12FC8263-F21C-4996-BCDC-13F0FA715184}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2AF41AFA-CD9C-46A4-89DC-DDF9E7F3BD9C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{076377A9-B707-4227-A69F-492AED914604}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{9FAB453D-0ABD-45CB-A966-00EC8D4A4C39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Domain", "CarRental.Domain\CarRental.Domain.csproj", "{7A09F7CD-0655-469F-9078-60EC97269925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Persistence.EF", "CarRental.Persistence.EF\CarRental.Persistence.EF.csproj", "{C1EE4638-7A79-4973-87B9-3F06BB7C278D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Api", "CarRental.Api\CarRental.Api.csproj", "{AE1A7AD2-9260-48BC-A5DF-43605F2F6470}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C1EE4638-7A79-4973-87B9-3F06BB7C278D} = {C1EE4638-7A79-4973-87B9-3F06BB7C278D}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A09F7CD-0655-469F-9078-60EC97269925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A09F7CD-0655-469F-9078-60EC97269925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A09F7CD-0655-469F-9078-60EC97269925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A09F7CD-0655-469F-9078-60EC97269925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1EE4638-7A79-4973-87B9-3F06BB7C278D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1EE4638-7A79-4973-87B9-3F06BB7C278D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1EE4638-7A79-4973-87B9-3F06BB7C278D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1EE4638-7A79-4973-87B9-3F06BB7C278D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE1A7AD2-9260-48BC-A5DF-43605F2F6470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE1A7AD2-9260-48BC-A5DF-43605F2F6470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE1A7AD2-9260-48BC-A5DF-43605F2F6470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE1A7AD2-9260-48BC-A5DF-43605F2F6470}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{12FC8263-F21C-4996-BCDC-13F0FA715184} = {11F041CB-339E-48CA-B9E9-8A08150F0E1D}
+		{2AF41AFA-CD9C-46A4-89DC-DDF9E7F3BD9C} = {11F041CB-339E-48CA-B9E9-8A08150F0E1D}
+		{076377A9-B707-4227-A69F-492AED914604} = {11F041CB-339E-48CA-B9E9-8A08150F0E1D}
+		{9FAB453D-0ABD-45CB-A966-00EC8D4A4C39} = {11F041CB-339E-48CA-B9E9-8A08150F0E1D}
+		{7A09F7CD-0655-469F-9078-60EC97269925} = {2AF41AFA-CD9C-46A4-89DC-DDF9E7F3BD9C}
+		{C1EE4638-7A79-4973-87B9-3F06BB7C278D} = {076377A9-B707-4227-A69F-492AED914604}
+		{AE1A7AD2-9260-48BC-A5DF-43605F2F6470} = {12FC8263-F21C-4996-BCDC-13F0FA715184}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FADF4C8C-878F-4D44-8BF8-9B04BAB5F5B4}
+	EndGlobalSection
+EndGlobal
