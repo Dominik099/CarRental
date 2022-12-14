@@ -8,7 +8,6 @@ namespace CarRental.Api
 {
     public class Program
     {
- 
         public static IConfiguration Configuration { get; set; }
 
         public Program(IConfiguration configuration)
