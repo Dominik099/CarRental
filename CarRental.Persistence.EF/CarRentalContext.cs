@@ -20,6 +20,7 @@ namespace CarRental.Persistence.EF
             new CarConfiguration().Configure(modelBuilder.Entity<Car>());
             new CarAddressConfiguration().Configure(modelBuilder.Entity<CarAddress>());
             new PriceCategoryConfiguration().Configure(modelBuilder.Entity<PriceCategory>());
+
         }
 
 

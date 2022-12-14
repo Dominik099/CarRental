@@ -8,13 +8,6 @@ namespace CarRental.Api
 {
     public class Program
     {
-        public static IConfiguration Configuration { get; set; }
-
-        public Program(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -25,7 +18,10 @@ namespace CarRental.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddCarRentalPersistenceEFServices(Configuration);
+            builder.Services.AddDbContext<CarRentalContext>(
+                option => option
+                .UseSqlServer(builder.Configuration.GetConnectionString("CarRentalConnectionString"))
+                );
 
             var app = builder.Build();
 
