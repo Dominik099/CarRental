@@ -18,4 +18,8 @@
 	  <ProjectReference Include="..\CarRental.Persistence.EF\CarRental.Persistence.EF.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Controllers\" />
+	</ItemGroup>
+
 </Project>

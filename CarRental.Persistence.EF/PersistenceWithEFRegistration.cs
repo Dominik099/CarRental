@@ -16,8 +16,8 @@ namespace CarRental.Persistence.EF
     {
         public static IServiceCollection AddCarRentalPersistenceEFServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<CarRentalContext>(option =>
-            option.UseSqlServer(configuration.GetConnectionString("CarRentalConnectionString")));
+            services.AddDbContext<CarRentalContext>(options =>
+            options.UseSqlServer(configuration.GetConnectionString("CarRentalConnectionString")));
 
             return services;
         }

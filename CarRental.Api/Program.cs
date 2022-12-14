@@ -1,11 +1,14 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
 using CarRental.Persistence.EF;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CarRental.Api
 {
     public class Program
     {
+ 
         public static IConfiguration Configuration { get; set; }
 
         public Program(IConfiguration configuration)
@@ -38,6 +41,10 @@ namespace CarRental.Api
 
             app.UseAuthorization();
 
+            using var scope = app.Services.CreateScope();
+            var dbContext = scope.ServiceProvider.GetService<CarRentalContext>();
+
+            var pendingMigrations = dbContext.Database.GetPendingMigrations();
 
             app.MapControllers();
 
