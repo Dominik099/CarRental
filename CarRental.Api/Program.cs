@@ -1,11 +1,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
+using CarRental.Persistence.EF;
 
 namespace CarRental.Api
 {
     public class Program
     {
-        public IConfiguration Configuration { get; }
+        public static IConfiguration Configuration { get; set; }
 
         public Program(IConfiguration configuration)
         {
