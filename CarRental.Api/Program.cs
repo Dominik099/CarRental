@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Builder;
 using CarRental.Persistence.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
+using MediatR;
+using AutoMapper;
 
 namespace CarRental.Api
 {
@@ -22,6 +24,8 @@ namespace CarRental.Api
                 option => option
                 .UseSqlServer(builder.Configuration.GetConnectionString("CarRentalConnectionString"))
                 );
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
             var app = builder.Build();
 

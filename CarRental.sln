@@ -13,14 +13,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{9FAB453D-0ABD-45CB-A966-00EC8D4A4C39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Domain", "CarRental.Domain\CarRental.Domain.csproj", "{7A09F7CD-0655-469F-9078-60EC97269925}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Domain", "CarRental.Domain\CarRental.Domain.csproj", "{7A09F7CD-0655-469F-9078-60EC97269925}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Persistence.EF", "CarRental.Persistence.EF\CarRental.Persistence.EF.csproj", "{C1EE4638-7A79-4973-87B9-3F06BB7C278D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Persistence.EF", "CarRental.Persistence.EF\CarRental.Persistence.EF.csproj", "{C1EE4638-7A79-4973-87B9-3F06BB7C278D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Api", "CarRental.Api\CarRental.Api.csproj", "{AE1A7AD2-9260-48BC-A5DF-43605F2F6470}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Api", "CarRental.Api\CarRental.Api.csproj", "{AE1A7AD2-9260-48BC-A5DF-43605F2F6470}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C1EE4638-7A79-4973-87B9-3F06BB7C278D} = {C1EE4638-7A79-4973-87B9-3F06BB7C278D}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Application", "CarRental.Application\CarRental.Application.csproj", "{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +42,10 @@ Global
 		{AE1A7AD2-9260-48BC-A5DF-43605F2F6470}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE1A7AD2-9260-48BC-A5DF-43605F2F6470}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE1A7AD2-9260-48BC-A5DF-43605F2F6470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{7A09F7CD-0655-469F-9078-60EC97269925} = {2AF41AFA-CD9C-46A4-89DC-DDF9E7F3BD9C}
 		{C1EE4638-7A79-4973-87B9-3F06BB7C278D} = {076377A9-B707-4227-A69F-492AED914604}
 		{AE1A7AD2-9260-48BC-A5DF-43605F2F6470} = {12FC8263-F21C-4996-BCDC-13F0FA715184}
+		{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1} = {2AF41AFA-CD9C-46A4-89DC-DDF9E7F3BD9C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FADF4C8C-878F-4D44-8BF8-9B04BAB5F5B4}
