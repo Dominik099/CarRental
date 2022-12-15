@@ -40,6 +40,10 @@ namespace CarRental.Api
             var dbContext = scope.ServiceProvider.GetService<CarRentalContext>();
 
             var pendingMigrations = dbContext.Database.GetPendingMigrations();
+            if (pendingMigrations.Any())
+            {
+                dbContext.Database.Migrate();
+            }
 
             app.MapControllers();
 

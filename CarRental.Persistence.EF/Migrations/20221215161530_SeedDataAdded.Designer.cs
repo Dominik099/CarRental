@@ -3,6 +3,7 @@ using CarRental.Persistence.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.Persistence.EF.Migrations
 {
     [DbContext(typeof(CarRentalContext))]
-    partial class CarRentalContextModelSnapshot : ModelSnapshot
+    [Migration("20221215161530_SeedDataAdded")]
+    partial class SeedDataAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +63,7 @@ namespace CarRental.Persistence.EF.Migrations
 
                     b.HasIndex("PriceCategoryId");
 
-                    b.ToTable("Cars", (string)null);
+                    b.ToTable("Cars");
 
                     b.HasData(
                         new
@@ -196,7 +198,7 @@ namespace CarRental.Persistence.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CarAddresses", (string)null);
+                    b.ToTable("CarAddresses");
 
                     b.HasData(
                         new
@@ -239,7 +241,7 @@ namespace CarRental.Persistence.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PriceCategories", (string)null);
+                    b.ToTable("PriceCategories");
 
                     b.HasData(
                         new
