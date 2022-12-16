@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarRental.Domain.Entities;
 using CarRental.Application.Functions.Cars.Queries.GetCarsList;
-using CarRental.Application.Functions.CarAddress.Queries.GetCarAddressList;
+using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList;
 
 namespace CarRental.Application.Mapper
 {
@@ -14,7 +14,7 @@ namespace CarRental.Application.Mapper
     {
         public MappingProfile()
         {
-            //CreateMap<Car, CarViewModel>().ForMember(x => x.Category, x => x.MapFrom(x => x.PriceCategory.Category)).ReverseMap();
+            CreateMap<Car, CarViewModel>().ForMember(x => x.Category, x => x.MapFrom(x => x.PriceCategory.Category)).ReverseMap();
             //CreateMap<CarAddress, CarAddressDto>().ReverseMap();
         }
     }

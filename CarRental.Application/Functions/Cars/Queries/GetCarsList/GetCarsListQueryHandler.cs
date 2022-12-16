@@ -30,7 +30,7 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
 
             var priceCategory = await _priceCategoryRepository.GetAllAsync();
 
-            carsList.Category = _mapper.Map<List<PriceCategoryDto>>(priceCategory);
+            carsList.Category = _mapper.Map<PriceCategoryDto>(priceCategory);
 
             return carsList;
 
