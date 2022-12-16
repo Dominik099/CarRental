@@ -26,7 +26,7 @@ namespace CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList
             var carAddressList = await _carAddressRepository.GetAllAsync();
             var carAddressListOrdered = carAddressList.OrderBy(x => x.City);
 
-            return _mapper.Map<List<CarAddressViewModel>>(carAddressList);
+            return _mapper.Map<List<CarAddressViewModel>>(carAddressList).ToList();
         }
-    }
+    } 
 }

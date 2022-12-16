@@ -26,11 +26,11 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
         public async Task<List<CarViewModel>> Handle(GetCarsListQuery request, CancellationToken cancellationToken)
         {
             var cars = await _carRepository.GetAllAsync();
-            var carsList = _mapper.Map<CarViewModel>(cars);
+            var carsList = _mapper.Map<List<CarViewModel>>(cars);
 
             var priceCategory = await _priceCategoryRepository.GetAllAsync();
 
-            carsList.Category = _mapper.Map<PriceCategoryDto>(priceCategory);
+            carsList.Category = _mapper.Map<List<PriceCategoryDto>>(priceCategory);
 
             return carsList;
 
