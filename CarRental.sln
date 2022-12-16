@@ -16,13 +16,19 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Domain", "CarRental.Domain\CarRental.Domain.csproj", "{7A09F7CD-0655-469F-9078-60EC97269925}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Persistence.EF", "CarRental.Persistence.EF\CarRental.Persistence.EF.csproj", "{C1EE4638-7A79-4973-87B9-3F06BB7C278D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1} = {FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Api", "CarRental.Api\CarRental.Api.csproj", "{AE1A7AD2-9260-48BC-A5DF-43605F2F6470}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C1EE4638-7A79-4973-87B9-3F06BB7C278D} = {C1EE4638-7A79-4973-87B9-3F06BB7C278D}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Application", "CarRental.Application\CarRental.Application.csproj", "{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Application", "CarRental.Application\CarRental.Application.csproj", "{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7A09F7CD-0655-469F-9078-60EC97269925} = {7A09F7CD-0655-469F-9078-60EC97269925}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
