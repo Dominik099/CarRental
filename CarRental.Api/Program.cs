@@ -5,6 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using MediatR;
 using AutoMapper;
+using Microsoft.AspNetCore.Cors.Infrastructure;
+using CarRental.Application.Contracts.Persistence;
+using CarRental.Application.Functions.Cars.Queries.GetCarsList;
+using CarRental.Persistence.EF.Repositories;
+using Microsoft.OpenApi.Models;
 
 namespace CarRental.Api
 {
@@ -19,13 +24,22 @@ namespace CarRental.Api
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "CarRental API",
+                });
+
+            });
             builder.Services.AddDbContext<CarRentalContext>(
                 option => option
                 .UseSqlServer(builder.Configuration.GetConnectionString("CarRentalConnectionString"))
                 );
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
             var app = builder.Build();
 

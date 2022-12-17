@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarRental.Domain.Entities;
 using AutoMapper;
+using CarRental.Application.Functions.Cars;
 
 namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
 {
@@ -25,12 +26,16 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
 
         public async Task<List<CarViewModel>> Handle(GetCarsListQuery request, CancellationToken cancellationToken)
         {
+
             var cars = await _carRepository.GetAllAsync();
             var carsList = _mapper.Map<List<CarViewModel>>(cars);
 
             var priceCategory = await _priceCategoryRepository.GetAllAsync();
 
-            carsList.Category = _mapper.Map<PriceCategoryDto>(priceCategory);
+            foreach (var car in carsList)
+            {
+                car.Category = _mapper.Map<PriceCategoryDto>(priceCategory);
+            }
 
             return carsList;
 
