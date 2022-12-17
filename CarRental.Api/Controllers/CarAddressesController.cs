@@ -1,4 +1,5 @@
 ﻿using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList;
+using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressById;
 using CarRental.Application.Functions.Cars.Queries.GetCarsList;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -22,6 +23,13 @@ namespace CarRental.Api.Controllers
         {
             var carList = await _mediator.Send(new GetCarAddressesListQuery());
             return Ok(carList);
+        }
+
+        [HttpGet("{id}", Name = "GetCarAddressById")]
+        public async Task<ActionResult<CarAddressViewModel>> GetCarAddressById(int id)
+        {
+            var carAddress = await _mediator.Send(new GetCarAddressByIdQuery() { Id = id});
+            return Ok(carAddress);
         }
     }
 }
