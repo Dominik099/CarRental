@@ -29,16 +29,20 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
 
             var cars = await _carRepository.GetAllAsync();
             var carsList = _mapper.Map<List<CarViewModel>>(cars);
-
             var priceCategory = await _priceCategoryRepository.GetAllAsync();
-            //var priceCategoryList = _mapper.Map<List<PriceCategoryDto>>(priceCategory);
 
-            //var allCarsList = _mapper.Map<List<CarViewModel>>(priceCategoryList);
-
-
-            foreach (var car in carsList)
+            foreach(var x in cars)
             {
-                car.PriceCategory = _mapper.Map<PriceCategoryDto>(priceCategory);
+                foreach (var car in carsList)
+                {
+                    foreach (var category in priceCategory)
+                    {
+                        if (x.Id == car.Id && x.PriceCategoryId == category.Id)
+                        {
+                            car.PriceCategory = _mapper.Map<PriceCategoryDto>(category);
+                        }
+                    }
+                }
             }
 
             return carsList;

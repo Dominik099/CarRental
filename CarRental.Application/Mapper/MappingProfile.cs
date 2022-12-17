@@ -14,9 +14,9 @@ namespace CarRental.Application.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Car, CarViewModel>().ReverseMap();
-            CreateMap<PriceCategory, PriceCategoryDto>().ReverseMap();
-            CreateMap<PriceCategoryDto, CarViewModel>().ForMember(x => x.PriceCategory, x => x.MapFrom(x => x.Category));
+            CreateMap<Car, CarViewModel>();
+            CreateMap<PriceCategory, PriceCategoryDto>();
+            CreateMap<PriceCategoryDto, CarViewModel>();
             CreateMap<CarAddress, CarAddressViewModel>().ReverseMap();
 
         }
