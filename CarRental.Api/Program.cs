@@ -10,6 +10,7 @@ using CarRental.Application.Contracts.Persistence;
 using CarRental.Application.Functions.Cars.Queries.GetCarsList;
 using CarRental.Persistence.EF.Repositories;
 using Microsoft.OpenApi.Models;
+using CarRental.Application.Mapper;
 
 namespace CarRental.Api
 {
@@ -42,6 +43,13 @@ namespace CarRental.Api
             builder.Services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
             var app = builder.Build();
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<MappingProfile>();
+            });
+
+            var mapper = config.CreateMapper();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

@@ -35,6 +35,7 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
 
             //var allCarsList = _mapper.Map<List<CarViewModel>>(priceCategoryList);
 
+
             foreach (var car in carsList)
             {
                 car.PriceCategory = _mapper.Map<PriceCategoryDto>(priceCategory);
