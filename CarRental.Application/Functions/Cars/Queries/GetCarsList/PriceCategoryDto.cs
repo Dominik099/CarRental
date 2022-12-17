@@ -8,7 +8,6 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
 {
     public class PriceCategoryDto
     {
-        public int Id { get; set; }
         public string Category { get; set; }
     }
 }

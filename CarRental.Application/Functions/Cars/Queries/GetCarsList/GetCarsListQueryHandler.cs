@@ -31,10 +31,13 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
             var carsList = _mapper.Map<List<CarViewModel>>(cars);
 
             var priceCategory = await _priceCategoryRepository.GetAllAsync();
+            //var priceCategoryList = _mapper.Map<List<PriceCategoryDto>>(priceCategory);
+
+            //var allCarsList = _mapper.Map<List<CarViewModel>>(priceCategoryList);
 
             foreach (var car in carsList)
             {
-                car.Category = _mapper.Map<PriceCategoryDto>(priceCategory);
+                car.PriceCategory = _mapper.Map<PriceCategoryDto>(priceCategory);
             }
 
             return carsList;

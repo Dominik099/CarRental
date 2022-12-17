@@ -3,6 +3,7 @@ using CarRental.Persistence.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.Persistence.EF.Migrations
 {
     [DbContext(typeof(CarRentalContext))]
-    partial class CarRentalContextModelSnapshot : ModelSnapshot
+    [Migration("20221217120722_IdRename")]
+    partial class IdRename
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,11 +25,11 @@ namespace CarRental.Persistence.EF.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.Car", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CarId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarId"), 1L, 1);
 
                     b.Property<decimal>("AVGFuelConsumption")
                         .HasPrecision(3, 1)
@@ -55,7 +57,7 @@ namespace CarRental.Persistence.EF.Migrations
                     b.Property<int>("YearOfProduction")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("CarId");
 
                     b.HasIndex("CarAddressId");
 
@@ -66,7 +68,7 @@ namespace CarRental.Persistence.EF.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            CarId = 1,
                             AVGFuelConsumption = 6.2m,
                             CarAddressId = 1,
                             Engine = "2.0 HDI 136HP",
@@ -78,7 +80,7 @@ namespace CarRental.Persistence.EF.Migrations
                         },
                         new
                         {
-                            Id = 2,
+                            CarId = 2,
                             AVGFuelConsumption = 10.5m,
                             CarAddressId = 2,
                             Engine = "2.0 132HP",
@@ -90,7 +92,7 @@ namespace CarRental.Persistence.EF.Migrations
                         },
                         new
                         {
-                            Id = 3,
+                            CarId = 3,
                             AVGFuelConsumption = 5.5m,
                             CarAddressId = 1,
                             Engine = "1.2 78HP",
@@ -102,7 +104,7 @@ namespace CarRental.Persistence.EF.Migrations
                         },
                         new
                         {
-                            Id = 4,
+                            CarId = 4,
                             AVGFuelConsumption = 13.5m,
                             CarAddressId = 1,
                             Engine = "4.0 TFSI 571HP",
@@ -114,7 +116,7 @@ namespace CarRental.Persistence.EF.Migrations
                         },
                         new
                         {
-                            Id = 5,
+                            CarId = 5,
                             AVGFuelConsumption = 9.2m,
                             CarAddressId = 2,
                             Engine = "2.0 211HP",
@@ -126,7 +128,7 @@ namespace CarRental.Persistence.EF.Migrations
                         },
                         new
                         {
-                            Id = 6,
+                            CarId = 6,
                             AVGFuelConsumption = 5.5m,
                             CarAddressId = 2,
                             Engine = "1.5 TSI 150HP",
@@ -138,7 +140,7 @@ namespace CarRental.Persistence.EF.Migrations
                         },
                         new
                         {
-                            Id = 7,
+                            CarId = 7,
                             AVGFuelConsumption = 5.5m,
                             CarAddressId = 2,
                             Engine = "1.6 HDI 114HP",
@@ -150,7 +152,7 @@ namespace CarRental.Persistence.EF.Migrations
                         },
                         new
                         {
-                            Id = 8,
+                            CarId = 8,
                             AVGFuelConsumption = 9.0m,
                             CarAddressId = 3,
                             Engine = "2.0 TFSI 200HP",
@@ -162,7 +164,7 @@ namespace CarRental.Persistence.EF.Migrations
                         },
                         new
                         {
-                            Id = 9,
+                            CarId = 9,
                             AVGFuelConsumption = 8.5m,
                             CarAddressId = 3,
                             Engine = "1.6 102HP",
@@ -176,11 +178,11 @@ namespace CarRental.Persistence.EF.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.CarAddress", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CarAddressId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarAddressId"), 1L, 1);
 
                     b.Property<string>("City")
                         .HasMaxLength(50)
@@ -194,28 +196,28 @@ namespace CarRental.Persistence.EF.Migrations
                         .HasMaxLength(70)
                         .HasColumnType("nvarchar(70)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CarAddressId");
 
                     b.ToTable("CarAddresses");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            CarAddressId = 1,
                             City = "Rzeszow",
                             PostalCode = "35-064",
                             Street = "Targowa 17"
                         },
                         new
                         {
-                            Id = 2,
+                            CarAddressId = 2,
                             City = "Krakow",
                             PostalCode = "30-072",
                             Street = "Rostafinskiego 9"
                         },
                         new
                         {
-                            Id = 3,
+                            CarAddressId = 3,
                             City = "Wroclaw",
                             PostalCode = "50-416",
                             Street = "Generala Romualda Traugutta 25"
@@ -224,11 +226,11 @@ namespace CarRental.Persistence.EF.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.PriceCategory", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PriceCategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PriceCategoryId"), 1L, 1);
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
@@ -237,32 +239,32 @@ namespace CarRental.Persistence.EF.Migrations
                         .HasPrecision(2, 1)
                         .HasColumnType("decimal(2,1)");
 
-                    b.HasKey("Id");
+                    b.HasKey("PriceCategoryId");
 
                     b.ToTable("PriceCategories");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            PriceCategoryId = 1,
                             Category = "Basic",
                             Multiplier = 1.0m
                         },
                         new
                         {
-                            Id = 2,
+                            PriceCategoryId = 2,
                             Category = "Standard",
                             Multiplier = 1.3m
                         },
                         new
                         {
-                            Id = 3,
+                            PriceCategoryId = 3,
                             Category = "Medium",
                             Multiplier = 1.6m
                         },
                         new
                         {
-                            Id = 4,
+                            PriceCategoryId = 4,
                             Category = "Premium",
                             Multiplier = 2.0m
                         });

@@ -15,7 +15,6 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
         public string Engine { get; set; }
         public decimal AVGFuelConsumption { get; set; }
         public int NumberOfCars { get; set; }
-        public PriceCategoryDto Category { get; set; }
-        public int CategoryId { get; set; }
+        public PriceCategoryDto PriceCategory { get; set; }
     }
 }
