@@ -17,6 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Domain", "CarRent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Persistence.EF", "CarRental.Persistence.EF\CarRental.Persistence.EF.csproj", "{C1EE4638-7A79-4973-87B9-3F06BB7C278D}"
 	ProjectSection(ProjectDependencies) = postProject
+		{01723546-6AF4-4936-8556-5C95D9E0C4F7} = {01723546-6AF4-4936-8556-5C95D9E0C4F7}
 		{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1} = {FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}
 	EndProjectSection
 EndProject
@@ -29,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Application", "Ca
 	ProjectSection(ProjectDependencies) = postProject
 		{7A09F7CD-0655-469F-9078-60EC97269925} = {7A09F7CD-0655-469F-9078-60EC97269925}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Common.Abstractions", "CarRental.Common.Abstractions\CarRental.Common.Abstractions.csproj", "{01723546-6AF4-4936-8556-5C95D9E0C4F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +55,10 @@ Global
 		{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01723546-6AF4-4936-8556-5C95D9E0C4F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01723546-6AF4-4936-8556-5C95D9E0C4F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01723546-6AF4-4936-8556-5C95D9E0C4F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01723546-6AF4-4936-8556-5C95D9E0C4F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +72,7 @@ Global
 		{C1EE4638-7A79-4973-87B9-3F06BB7C278D} = {076377A9-B707-4227-A69F-492AED914604}
 		{AE1A7AD2-9260-48BC-A5DF-43605F2F6470} = {12FC8263-F21C-4996-BCDC-13F0FA715184}
 		{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1} = {2AF41AFA-CD9C-46A4-89DC-DDF9E7F3BD9C}
+		{01723546-6AF4-4936-8556-5C95D9E0C4F7} = {076377A9-B707-4227-A69F-492AED914604}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FADF4C8C-878F-4D44-8BF8-9B04BAB5F5B4}

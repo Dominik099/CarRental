@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarRental.Application.Functions.Cars.Queries.GetCarsList;
+using System.ComponentModel.DataAnnotations;
+using CarRental.Persistence.EF.Repositories.Exceptions;
 
 namespace CarRental.Application.RentalCalculator
 {
@@ -20,10 +22,18 @@ namespace CarRental.Application.RentalCalculator
         {
             SelectedCar = selectedCar;
             EstimatedKilometers = estimadedKilometers;
+            GuardBeforeTooYoungDriver(driverLicence);
             DriverLicenceDate = driverLicence;
             RentalDate = rentalDate;
             ReturnDate = returnDate;
         }
+
+        private void GuardBeforeTooYoungDriver(DateTime driverLicenceDate)
+        {
+            if (DateTime.UtcNow.Year - driverLicenceDate.Year < 3 && SelectedCar.PriceCategory.Category == "Premium") throw new TooYoungDriverException();
+            if (driverLicenceDate == DateTime.MinValue) throw new DriverLicenceDataIsInvalidException();
+        }
+
 
     }
 

@@ -11,6 +11,7 @@ using CarRental.Application.Functions.Cars.Queries.GetCarsList;
 using CarRental.Persistence.EF.Repositories;
 using Microsoft.OpenApi.Models;
 using CarRental.Application.Mapper;
+using CarRental.Application.Functions.RentalCalculator;
 
 namespace CarRental.Api
 {
@@ -41,6 +42,7 @@ namespace CarRental.Api
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
+            builder.Services.AddScoped<IRentalCalculator, RentalCalculator>();
 
             var app = builder.Build();
 
