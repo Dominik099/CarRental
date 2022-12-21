@@ -9,5 +9,6 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
     public class PriceCategoryDto
     {
         public string Category { get; set; }
+        public decimal Multiplier { get; set; }
     }
 }

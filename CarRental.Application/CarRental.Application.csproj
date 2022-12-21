@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Contracts\Interface\**" />
+    <EmbeddedResource Remove="Contracts\Interface\**" />
+    <None Remove="Contracts\Interface\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="FluentValidation" Version="11.4.0" />
@@ -16,10 +22,6 @@
 	
 	<ItemGroup>
 	  <ProjectReference Include="..\CarRental.Domain\CarRental.Domain.csproj" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Contracts\Interface\" />
 	</ItemGroup>
 
 </Project>
