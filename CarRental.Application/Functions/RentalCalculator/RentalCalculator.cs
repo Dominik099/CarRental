@@ -18,9 +18,8 @@ namespace CarRental.Application.Functions.RentalCalculator
             var totalPrice = baseCost * (returnDate - rentalDate).Days;
             return totalPrice;
         }
-        public decimal CalculateForMultiplier(CarViewModel selectedCar)
-        {
-            var totalPrice = 
-        }
+        //public decimal CalculateForMultiplier(CarViewModel selectedCar)
+        //{
+        //}
     }
 }
