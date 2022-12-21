@@ -20,18 +20,42 @@ namespace CarRental.Application.RentalCalculator
 
         public UserInput(CarViewModel selectedCar, int estimadedKilometers, DateTime driverLicence, DateTime rentalDate, DateTime returnDate)
         {
+            GuardBeforeInvalidCar(selectedCar);
             SelectedCar = selectedCar;
+            GuardBeforeTooLongKilometers(estimadedKilometers);
             EstimatedKilometers = estimadedKilometers;
             GuardBeforeTooYoungDriver(driverLicence);
             DriverLicenceDate = driverLicence;
+            GuardBeforeInvalidRentalDate(rentalDate);
             RentalDate = rentalDate;
+            GuardBeforeInvalidReturnDate(returnDate);
             ReturnDate = returnDate;
+        }
+
+        private void GuardBeforeInvalidCar(CarViewModel selectedCar)
+        {
+            if (selectedCar == null) throw new SelectedCarInvalidException();
         }
 
         private void GuardBeforeTooYoungDriver(DateTime driverLicenceDate)
         {
             if (DateTime.UtcNow.Year - driverLicenceDate.Year < 3 && SelectedCar.PriceCategory.Category == "Premium") throw new TooYoungDriverException();
             if (driverLicenceDate == DateTime.MinValue) throw new DriverLicenceDataIsInvalidException();
+        }
+
+        private void GuardBeforeTooLongKilometers(int kilometers)
+        {
+            if (kilometers > 10000 || kilometers == null) throw new TooLongKilometersException();
+        }
+
+        private void GuardBeforeInvalidRentalDate(DateTime rentalDate)
+        {
+            if (DateTime.UtcNow.Day > rentalDate.Day || rentalDate == DateTime.MinValue) throw new RentalDateInvalidException();
+        }
+
+        private void GuardBeforeInvalidReturnDate(DateTime returnDate)
+        {
+            if (returnDate.Day < RentalDate.Day || returnDate == DateTime.MinValue) throw new ReturnDateInvalidException();
         }
 
 
