@@ -20,4 +20,9 @@ namespace CarRental.Common.Abstractions.Exceptions
     {
         protected NotFoundException(string message) : base(message) { }
     }
+
+    public abstract class ValidationErrorException : CarRentalException
+    {
+        protected ValidationErrorException(string message) : base(message) { }
+    }
 }

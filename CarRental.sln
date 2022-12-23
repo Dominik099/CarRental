@@ -26,6 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Api", "CarRental.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Application", "CarRental.Application\CarRental.Application.csproj", "{FCCFDDB9-B91F-490A-BEB2-5AA3ECF5CFF1}"
 	ProjectSection(ProjectDependencies) = postProject
+		{01723546-6AF4-4936-8556-5C95D9E0C4F7} = {01723546-6AF4-4936-8556-5C95D9E0C4F7}
 		{7A09F7CD-0655-469F-9078-60EC97269925} = {7A09F7CD-0655-469F-9078-60EC97269925}
 	EndProjectSection
 EndProject

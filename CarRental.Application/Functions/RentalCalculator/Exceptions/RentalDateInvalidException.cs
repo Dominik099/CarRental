@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Persistence.EF.Repositories.Exceptions
+namespace CarRental.Application.RentalCalculator.Exceptions
 {
     public class RentalDateInvalidException : BadRequestException
     {

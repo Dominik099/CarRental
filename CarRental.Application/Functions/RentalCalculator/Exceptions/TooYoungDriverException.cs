@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CarRental.Common.Abstractions;
 using CarRental.Common.Abstractions.Exceptions;
 
-namespace CarRental.Persistence.EF.Repositories.Exceptions
+namespace CarRental.Application.RentalCalculator.Exceptions
 {
     public class TooYoungDriverException : BadRequestException
     {
