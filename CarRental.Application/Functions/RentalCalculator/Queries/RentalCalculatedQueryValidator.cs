@@ -39,7 +39,8 @@ namespace CarRental.Application.Functions.RentalCalculator.Queries
                 .NotEmpty()
                 .WithMessage("Yo must enter the date of rental car")
                 .NotNull()
-                .GreaterThan(DateTime.Now.Date);
+                .GreaterThan(DateTime.Now.Date)
+                .WithMessage("The car can be rented from the next day");
 
             RuleFor(x => x.ReturnDate)
                 .NotEmpty()

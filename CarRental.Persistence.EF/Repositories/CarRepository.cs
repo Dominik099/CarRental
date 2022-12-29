@@ -19,9 +19,10 @@ namespace CarRental.Persistence.EF.Repositories
         {
             var selectedCar = _dbContext.Cars.FirstOrDefault(x => x.Id== carId);
 
-            var driverLicenseTime = (DateTime.Now.Year - driverLicenceDate.Year) < 3;
-
+            var daysOfThreeYears = 1095;
             var checkedLicense = true;
+
+            var driverLicenseTime = (DateTime.UtcNow - driverLicenceDate).TotalDays < (daysOfThreeYears + 1);
             
             if (selectedCar.PriceCategoryId == 4 && driverLicenseTime)
             {

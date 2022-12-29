@@ -20,6 +20,7 @@ namespace CarRental.Application.Functions.RentalCalculator
         private decimal baseCost = 250.0m;
         private decimal youngDriverCost = 0;
         private decimal fewPiecesCost = 0;
+        private int daysOfFiveYears = 1825;
 
         private readonly ICarRepository _carRepository;
         private readonly IAsyncRepository<PriceCategory> _priceCategoryRepository;
@@ -43,7 +44,7 @@ namespace CarRental.Application.Functions.RentalCalculator
 
             var periodCost = baseCost * (request.ReturnDate - request.RentalDate).Days;
             var categoryCost = periodCost * priceCategory.Multiplier - periodCost;
-            if (DateTime.UtcNow.Year - request.DriverLicenceDate.Year < 5)
+            if ((DateTime.UtcNow - request.DriverLicenceDate).TotalDays < (daysOfFiveYears + 1))
             {
                 youngDriverCost = (periodCost + categoryCost) * 0.2m;
             }
