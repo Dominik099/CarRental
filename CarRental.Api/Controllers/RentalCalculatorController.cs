@@ -9,6 +9,8 @@ using CarRental.Application.Functions.Cars.Queries.GetCarById;
 using CarRental.Application.RentalCalculator;
 using CarRental.Application.Contracts.Persistence;
 using CarRental.Application.Functions.RentalCalculator.Queries;
+using CarRental.Application.RentalCalculator;
+using CarRental.Application.RentalCalculator.Exceptions;
 
 namespace CarRental.Api.Controllers
 {
@@ -24,19 +26,11 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpGet(Name = "CarRentalCalculator")]
-        public async Task<ActionResult<CalculatedViewModel>> CalculatePrice([FromQuery]RentalCalculatedQuery rentalCalculatedQuery)
+        public async Task<ActionResult<RentalCalculatedQueryResponse>> CalculatePrice([FromQuery] RentalCalculatedQuery rentalCalculatedQuery)
         {
-            var calculatedCost = await _mediator.Send(new RentalCalculatedQuery()
-            {
-                CarId = rentalCalculatedQuery.CarId,
-                EstimatedKilometers = rentalCalculatedQuery.EstimatedKilometers,
-                DriverLicenceDate = rentalCalculatedQuery.DriverLicenceDate,
-                RentalDate = rentalCalculatedQuery.RentalDate,
-                ReturnDate = rentalCalculatedQuery.ReturnDate
-            });
+            var calculatedCost = await _mediator.Send(rentalCalculatedQuery);
 
             return Ok(calculatedCost);
         }
-
     }
 }

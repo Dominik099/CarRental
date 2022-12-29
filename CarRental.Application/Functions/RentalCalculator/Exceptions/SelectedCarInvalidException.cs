@@ -9,7 +9,7 @@ namespace CarRental.Application.RentalCalculator.Exceptions
 {
     public class SelectedCarInvalidException : BadRequestException
     {
-        public SelectedCarInvalidException() : base("Selected car is invalid")
+        public SelectedCarInvalidException() : base("You must select car")
         {
         }
     }

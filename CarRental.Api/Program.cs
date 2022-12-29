@@ -42,6 +42,7 @@ namespace CarRental.Api
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
+            builder.Services.AddScoped<ICarRepository, CarRepository>();
             //builder.Services.AddScoped<IRentalCalculator, RentalCalculatedQueryHandler>();
 
             var app = builder.Build();

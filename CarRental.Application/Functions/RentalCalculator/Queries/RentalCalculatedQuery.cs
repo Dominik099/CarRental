@@ -10,10 +10,11 @@ using MediatR;
 using CarRental.Application.RentalCalculator;
 using CarRental.Application.RentalCalculator.Exceptions;
 using CarRental.Application.Functions.RentalCalculator.Queries;
+using FluentValidation.Validators;
 
 namespace CarRental.Application.RentalCalculator
 {
-    public class RentalCalculatedQuery : IRequest<CalculatedViewModel>
+    public class RentalCalculatedQuery : IRequest<RentalCalculatedQueryResponse>
     {
         public int CarId { get; set; }
         public int EstimatedKilometers { get; set; }
@@ -23,11 +24,11 @@ namespace CarRental.Application.RentalCalculator
 
         //public RentalCalculatedQuery(int carId, int estimadedKilometers, DateTime driverLicenceDate, DateTime rentalDate, DateTime returnDate)
         //{
-        //    //GuardBeforeInvalidCar(selectedCar);
+        //    //GuardBeforeInvalidCar(carId);
         //    CarId = carId;
         //    //GuardBeforeTooLongKilometers(estimadedKilometers);
         //    EstimatedKilometers = estimadedKilometers;
-        //    //GuardBeforeTooYoungDriver(driverLicenceDate);
+        //    GuardBeforeTooYoungDriver(driverLicenceDate);
         //    DriverLicenceDate = driverLicenceDate;
         //    //GuardBeforeInvalidRentalDate(rentalDate);
         //    RentalDate = rentalDate;
@@ -35,13 +36,9 @@ namespace CarRental.Application.RentalCalculator
         //    ReturnDate = returnDate;
         //}
 
-        //public RentalCalculatedQuery()
+        //public void GuardBeforeInvalidCar(int carId)
         //{
-        //}
-
-        //private void GuardBeforeInvalidCar(CarViewModel selectedCar)
-        //{
-        //    if (selectedCar == null) throw new SelectedCarInvalidException();
+        //    if (carId == null) throw new SelectedCarInvalidException();
         //}
 
         //private void GuardBeforeTooYoungDriver(DateTime driverLicenceDate)
