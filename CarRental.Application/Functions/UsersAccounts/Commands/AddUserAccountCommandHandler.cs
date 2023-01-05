@@ -37,8 +37,6 @@ namespace CarRental.Application.Functions.UsersAccounts.Commands
                 LastName = command.LastName,
                 DateOfBirth = command.DateOfBirth,
                 PasswordHash = command.Password,
-                DriverLicenseDate = command.DriverLicenseDate,
-                Pesel = command.Pesel,
                 RoleId = 1,
             };
 

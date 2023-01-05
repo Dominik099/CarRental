@@ -15,10 +15,10 @@ namespace CarRental.Persistence.EF.Repositories
         {
         }
 
-        public Task<bool> IsPeselAlreadyExist(string pesel)
+        public Task<bool> IsEmailAlreadyExist(string email)
         {
             var matches = _dbContext.Users
-                .Any(x => x.Pesel.Equals(pesel));
+                .Any(x => x.Email.Equals(email));
 
             return Task.FromResult(matches);
         }

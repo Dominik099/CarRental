@@ -19,8 +19,6 @@ namespace CarRental.Persistence.EF.Configuration
             builder.Property(x => x.DateOfBirth)
                 .HasColumnType("date");
 
-            builder.Property(x => x.DriverLicenseDate)
-                .HasColumnType("date");
         }
     }
 }

@@ -41,59 +41,73 @@ namespace CarRental.Application.Functions.UsersAccounts.Commands
                 .MinimumLength(6)
                 .WithMessage("Password must be at least 6 characters long");
 
-            RuleFor(x => x.Pesel)
-                .NotNull()
-                .WithMessage("Pesel cannot be empty")
-                .Length(11)
-                .WithMessage("Pesel must have 11 characters");
+            //RuleFor(x => x.Pesel)
+            //    .NotNull()
+            //    .WithMessage("Pesel cannot be empty")
+            //    .Length(11)
+            //    .WithMessage("Pesel must have 11 characters");
+
+            //RuleFor(x => x)
+            //    .Must(UserIsAdult)
+            //    .WithMessage("You must be of legal age to rent a car");
+
+            //RuleFor(x => x)
+            //    .Must(DrivingLicenceCheck)
+            //    .WithMessage("You must be of legal age to hold a driver's license");
 
             RuleFor(x => x)
-                .Must(UserIsAdult)
-                .WithMessage("You must be of legal age to rent a car");
+                .MustAsync(IsEmailAlreadyExist)
+                .WithMessage("User with the given email already exists");
 
             RuleFor(x => x)
-                .Must(DrivingLicenceCheck)
-                .WithMessage("You must be of legal age to hold a driver's license");
-
-            RuleFor(x => x)
-                .MustAsync(IsPeselAlreadyExist)
-                .WithMessage("User with the given PESEL already exists");
+                .Must(DateOfBirthCheck)
+                .WithMessage("Invalid date of birth");
         }
 
-        private bool UserIsAdult(AddUserAccountCommand arg)
+        private bool DateOfBirthCheck (AddUserAccountCommand arg)
         {
-            var daysOfEighteenYears = 6570;
-            var isAdult = true;
-
-            var userAge = (DateTime.UtcNow - arg.DateOfBirth).TotalDays < (daysOfEighteenYears + 1);
-
-            if (userAge)
+            var dateChecked = true;
+            if(arg.DateOfBirth >= DateTime.UtcNow)
             {
-                isAdult = false;
+                dateChecked = false;
             }
-
-            return isAdult;
+            return dateChecked;
         }
 
-        private bool DrivingLicenceCheck(AddUserAccountCommand arg)
-        {
-            var daysOfEighteenYears = 6570;
-            var driverLicense = true;
+        //private bool UserIsAdult(AddUserAccountCommand arg)
+        //{
+        //    var daysOfEighteenYears = 6570;
+        //    var isAdult = true;
 
-            var driverLicenseTime = (arg.DriverLicenseDate - arg.DateOfBirth).TotalDays < (daysOfEighteenYears + 1);
+        //    var userAge = (DateTime.UtcNow - arg.DateOfBirth).TotalDays < (daysOfEighteenYears + 1);
 
-            if (driverLicenseTime || arg.DriverLicenseDate < arg.DateOfBirth)
-            {
-                driverLicense = false;
-            }
+        //    if (userAge)
+        //    {
+        //        isAdult = false;
+        //    }
 
-            return driverLicense;
-        }
+        //    return isAdult;
+        //}
 
-        private async Task<bool> IsPeselAlreadyExist(AddUserAccountCommand user, CancellationToken cancellationToken)
+        //private bool DrivingLicenceCheck(AddUserAccountCommand arg)
+        //{
+        //    var daysOfEighteenYears = 6570;
+        //    var driverLicense = true;
+
+        //    var driverLicenseTime = (arg.DriverLicenseDate - arg.DateOfBirth).TotalDays < (daysOfEighteenYears + 1);
+
+        //    if (driverLicenseTime || arg.DriverLicenseDate < arg.DateOfBirth)
+        //    {
+        //        driverLicense = false;
+        //    }
+
+        //    return driverLicense;
+        //}
+
+        private async Task<bool> IsEmailAlreadyExist(AddUserAccountCommand user, CancellationToken cancellationToken)
         {
             var check = await _userRepository
-                .IsPeselAlreadyExist(user.Pesel);
+                .IsEmailAlreadyExist(user.Email);
 
             return !check;
         }

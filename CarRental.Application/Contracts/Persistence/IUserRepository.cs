@@ -9,6 +9,6 @@ namespace CarRental.Application.Contracts.Persistence
 {
     public interface IUserRepository : IAsyncRepository<User>
     {
-        Task<bool> IsPeselAlreadyExist(string pesel);
+        Task<bool> IsEmailAlreadyExist(string email);
     }
 }
