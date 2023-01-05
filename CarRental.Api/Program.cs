@@ -12,6 +12,7 @@ using CarRental.Persistence.EF.Repositories;
 using Microsoft.OpenApi.Models;
 using CarRental.Application.Mapper;
 using CarRental.Application.Functions.RentalCalculator;
+using CarRental.Application.Middleware;
 
 namespace CarRental.Api
 {
@@ -43,7 +44,8 @@ namespace CarRental.Api
             builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
             builder.Services.AddScoped<ICarRepository, CarRepository>();
-            //builder.Services.AddScoped<IRentalCalculator, RentalCalculatedQueryHandler>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
             var app = builder.Build();
 
@@ -61,6 +63,7 @@ namespace CarRental.Api
                 app.UseSwaggerUI();
             }
 
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

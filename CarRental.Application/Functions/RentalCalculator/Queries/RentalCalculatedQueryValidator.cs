@@ -27,10 +27,12 @@ namespace CarRental.Application.Functions.RentalCalculator.Queries
                 .WithMessage("You must enter estimated kilometers")
                 .NotNull()
                 .LessThan(10000)
-                .GreaterThan(0);
+                .WithMessage("The anticipated number of kilometres must be less than 10000")
+                .GreaterThan(0)
+                .WithMessage("The anticipated number of kilometres must be greater than 0");
 
             RuleFor(x => x.DriverLicenceDate)
-                .NotEmpty()
+                .NotEmpty()  
                 .WithMessage("You must enter the date of obtaining your driving license")
                 .NotNull()
                 .LessThan(DateTime.Now.AddDays(1));

@@ -10,7 +10,7 @@ using CarRental.Application.RentalCalculator;
 using CarRental.Application.Contracts.Persistence;
 using CarRental.Application.Functions.RentalCalculator.Queries;
 using CarRental.Application.RentalCalculator;
-using CarRental.Application.RentalCalculator.Exceptions;
+using CarRental.Application.Functions.RentalCalculator.Exceptions;
 
 namespace CarRental.Api.Controllers
 {

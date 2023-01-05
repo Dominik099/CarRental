@@ -15,12 +15,16 @@ namespace CarRental.Persistence.EF
         public DbSet<Car> Cars { get; set; }
         public DbSet<CarAddress> CarAddresses { get; set; }
         public DbSet<PriceCategory> PriceCategories { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             new CarConfiguration().Configure(modelBuilder.Entity<Car>());
             new CarAddressConfiguration().Configure(modelBuilder.Entity<CarAddress>());
             new PriceCategoryConfiguration().Configure(modelBuilder.Entity<PriceCategory>());
+            new RoleConfiguration().Configure(modelBuilder.Entity<Role>());
+            new UserConfiguration().Configure(modelBuilder.Entity<User>());
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarRentalContext).Assembly);
 
@@ -37,6 +41,11 @@ namespace CarRental.Persistence.EF
             foreach (var item in PriceCategoriesSeed.Get())
             {
                 modelBuilder.Entity<PriceCategory>().HasData(item);
+            }
+
+            foreach (var item in RolesSeed.Get())
+            {
+                modelBuilder.Entity<Role>().HasData(item);
             }
 
         }

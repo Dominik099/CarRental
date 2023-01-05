@@ -26,5 +26,13 @@ namespace CarRental.Persistence.EF.Repositories
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }
+
+        public async Task<T> AddAsync(T entity)
+        {
+            await _dbContext.Set<T>().AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
+
+            return entity;
+        }
     }
 }

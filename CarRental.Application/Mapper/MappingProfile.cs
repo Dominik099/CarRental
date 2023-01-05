@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CarRental.Domain.Entities;
 using CarRental.Application.Functions.Cars.Queries.GetCarsList;
 using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList;
+using CarRental.Application.Functions.UsersAccounts.Commands;
 
 namespace CarRental.Application.Mapper
 {

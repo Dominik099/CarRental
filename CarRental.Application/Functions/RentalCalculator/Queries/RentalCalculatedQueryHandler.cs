@@ -11,6 +11,7 @@ using MediatR;
 using CarRental.Application.Functions.Cars.Queries.GetCarById;
 using CarRental.Domain.Entities;
 using AutoMapper;
+using CarRental.Application.Functions.RentalCalculator.Exceptions;
 
 namespace CarRental.Application.Functions.RentalCalculator
 {
@@ -40,6 +41,10 @@ namespace CarRental.Application.Functions.RentalCalculator
                 return new RentalCalculatedQueryResponse(validatorResult);
 
             var selectedCar = await _carRepository.GetByIdAsync(request.CarId);
+
+            if (selectedCar is null)
+                throw new CarNotFoundException();
+
             var priceCategory = await _priceCategoryRepository.GetByIdAsync(selectedCar.PriceCategoryId);
 
             var periodCost = baseCost * (request.ReturnDate - request.RentalDate).Days;

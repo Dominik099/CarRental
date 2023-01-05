@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Application.RentalCalculator.Exceptions
+namespace CarRental.Application.Functions.UsersAccounts.Exceptions
 {
-    public class RentalDateInvalidException : BadRequestException
+    public class BadEmailCommandException : BadRequestException
     {
-        public RentalDateInvalidException() : base("Invalid rental date")
+        public BadEmailCommandException() : base("Email is invalid")
         {
         }
     }

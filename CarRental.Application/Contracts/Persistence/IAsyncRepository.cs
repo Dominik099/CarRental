@@ -10,5 +10,6 @@ namespace CarRental.Application.Contracts.Persistence
     {
         Task<IReadOnlyList<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
+        Task<T> AddAsync(T entity);
     }
 }

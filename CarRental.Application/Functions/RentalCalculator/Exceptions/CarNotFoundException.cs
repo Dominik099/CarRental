@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Application.RentalCalculator.Exceptions
+namespace CarRental.Application.Functions.RentalCalculator.Exceptions
 {
-    public class TooLongKilometersException : BadRequestException
+    public class CarNotFoundException : NotFoundException
     {
-        public TooLongKilometersException() : base("Invalid kilometers data")
+        public CarNotFoundException() : base("Car not found")
         {
         }
     }
