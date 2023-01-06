@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using FluentValidation.Results;
 using FluentValidation;
 
-namespace CarRental.Application.Functions.UsersAccounts.Commands
+namespace CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount
 {
     public class AddUserAccountCommandResponse : BaseResponse
     {

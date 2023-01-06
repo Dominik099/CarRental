@@ -9,7 +9,7 @@ using CarRental.Application.Contracts.Persistence;
 using CarRental.Domain.Entities;
 using System.ComponentModel;
 
-namespace CarRental.Application.Functions.UsersAccounts.Commands
+namespace CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount
 {
     public class AddUserAccountCommandValidator : AbstractValidator<AddUserAccountCommand>
     {
@@ -21,7 +21,8 @@ namespace CarRental.Application.Functions.UsersAccounts.Commands
 
             RuleFor(x => x.Email)
                 .NotNull()
-                .WithMessage("Email cannot be empty");
+                .WithMessage("Email cannot be empty")
+                .EmailAddress();
 
             RuleFor(x => x.FirstName)
                 .NotNull()
@@ -40,6 +41,12 @@ namespace CarRental.Application.Functions.UsersAccounts.Commands
                 .WithMessage("Password cannot be empty")
                 .MinimumLength(6)
                 .WithMessage("Password must be at least 6 characters long");
+
+            RuleFor(x => x.ConfirmPassword)
+                .NotEmpty()
+                .WithMessage("You must confirm your password")
+                .Equal(x => x.Password)
+                .WithMessage("Incorrect confirmation password");
 
             //RuleFor(x => x.Pesel)
             //    .NotNull()

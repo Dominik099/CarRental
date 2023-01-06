@@ -1,4 +1,5 @@
 ﻿using CarRental.Application.Functions.RentalCalculator.Exceptions;
+using CarRental.Application.Functions.UsersAccounts.Exceptions;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,11 @@ namespace CarRental.Application.Middleware
             try
             {
                 await next.Invoke(context);
+            }
+            catch (InvalidEmailOrPasswordException invalidEmailOrPasswordException)
+            {
+                context.Response.StatusCode = 400;
+                await context.Response.WriteAsync(invalidEmailOrPasswordException.Message);
             }
             catch (CarNotFoundException carNotFoundException)
             {

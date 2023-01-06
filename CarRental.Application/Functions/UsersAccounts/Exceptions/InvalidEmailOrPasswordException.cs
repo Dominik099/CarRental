@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.UsersAccounts.Exceptions
 {
-    public class BadEmailCommandException : BadRequestException
+    public class InvalidEmailOrPasswordException : BadRequestException
     {
-        public BadEmailCommandException() : base("Email is invalid")
+        public InvalidEmailOrPasswordException() : base("Invalid email or password")
         {
         }
     }

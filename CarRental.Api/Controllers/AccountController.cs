@@ -1,4 +1,5 @@
-﻿using CarRental.Application.Functions.UsersAccounts.Commands;
+﻿using CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount;
+using CarRental.Application.Functions.UsersAccounts.Query.UserLogin;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,14 @@ namespace CarRental.Api.Controllers
             var user = await _mediator.Send(addUserAccountCommand);
 
             return Ok(user);
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> Login ([FromQuery] UserLoginQuery userLoginQuery)
+        {
+            var token = await _mediator.Send(userLoginQuery);
+            var tokenString = token.ToString();
+            return Ok(token);
         }
     }
 }
