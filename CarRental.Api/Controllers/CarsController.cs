@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using CarRental.Application.Functions.Cars.Queries.GetCarsList;
 using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList;
 using CarRental.Application.Functions.Cars.Queries.GetCarById;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarRental.Api.Controllers
 {
@@ -19,6 +20,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpGet(Name = "GetAllCars")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<List<CarViewModel>>> GetAllCars()
         {
             var carList = await _mediator.Send(new GetAllCarsListQuery());

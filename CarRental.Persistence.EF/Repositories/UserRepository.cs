@@ -18,6 +18,7 @@ namespace CarRental.Persistence.EF.Repositories
         public async Task<User> GetByEmailAsync(string email)
         {
             return await _dbContext.Set<User>()
+                .Include(x => x.Role)
                 .Where(x => x.Email == email)
                 .FirstOrDefaultAsync();
         }

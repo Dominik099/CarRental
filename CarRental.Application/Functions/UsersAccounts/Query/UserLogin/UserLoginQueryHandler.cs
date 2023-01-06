@@ -50,11 +50,6 @@ namespace CarRental.Application.Functions.UsersAccounts.Query.UserLogin
             }
 
             var user = await _userRepository.GetByEmailAsync(request.Email);
-            var userMapped = _mapper.Map<UserLoginResponse>(user);
-
-            //var role = await _roleRepository.GetByIdAsync(user.RoleId);
-            //userMapped.Role = _mapper.Map<Role>(role);
-            userMapped.Role = await _roleRepository.GetByIdAsync(user.RoleId);
 
             if (user is null)
             {
@@ -70,10 +65,10 @@ namespace CarRental.Application.Functions.UsersAccounts.Query.UserLogin
 
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.NameIdentifier, userMapped.Id.ToString()),
-                new Claim(ClaimTypes.Name, $"{userMapped.FirstName} {userMapped.LastName}"),
-                new Claim(ClaimTypes.Role, $"{userMapped.Role.Name}"),
-                new Claim("DateOfBirth", userMapped.DateOfBirth.Value.ToString("yyyy-MM-dd"))
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+                new Claim(ClaimTypes.Role, $"{user.Role.Name}"),
+                new Claim("DateOfBirth", user.DateOfBirth.Value.ToString("yyyy-MM-dd"))
 
             };
 

@@ -95,8 +95,6 @@ namespace CarRental.Api
             app.UseAuthentication();
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-
             using var scope = app.Services.CreateScope();
             var dbContext = scope.ServiceProvider.GetService<CarRentalContext>();
 
@@ -105,7 +103,8 @@ namespace CarRental.Api
             {
                 dbContext.Database.Migrate();
             }
-
+            app.UseRouting();
+            app.UseAuthorization();
             app.MapControllers();
 
             app.Run();

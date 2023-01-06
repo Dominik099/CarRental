@@ -21,9 +21,6 @@ namespace CarRental.Application.Mapper
             CreateMap<PriceCategory, PriceCategoryDto>();
             CreateMap<PriceCategoryDto, CarViewModel>();
             CreateMap<CarAddress, CarAddressViewModel>().ReverseMap();
-            CreateMap<User, UserLoginResponse>();
-            CreateMap<Role, UserLoginResponse>();
-
         }
     }
 }
