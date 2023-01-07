@@ -19,14 +19,14 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpGet(Name = "GetAllAddresses")]
-        public async Task<ActionResult<List<CarAddressViewModel>>> GetAllAddresses()
+        public async Task<ActionResult<List<CarAddressDto>>> GetAllAddresses()
         {
             var carList = await _mediator.Send(new GetCarAddressesListQuery());
             return Ok(carList);
         }
 
         [HttpGet("{id}", Name = "GetCarAddressById")]
-        public async Task<ActionResult<CarAddressViewModel>> GetCarAddressById(int id)
+        public async Task<ActionResult<CarAddressDto>> GetCarAddressById(int id)
         {
             var carAddress = await _mediator.Send(new GetCarAddressByIdQuery() { Id = id});
             return Ok(carAddress);

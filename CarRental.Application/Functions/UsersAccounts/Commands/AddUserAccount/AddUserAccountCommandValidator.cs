@@ -48,22 +48,8 @@ namespace CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount
                 .Equal(x => x.Password)
                 .WithMessage("Incorrect confirmation password");
 
-            //RuleFor(x => x.Pesel)
-            //    .NotNull()
-            //    .WithMessage("Pesel cannot be empty")
-            //    .Length(11)
-            //    .WithMessage("Pesel must have 11 characters");
-
-            //RuleFor(x => x)
-            //    .Must(UserIsAdult)
-            //    .WithMessage("You must be of legal age to rent a car");
-
-            //RuleFor(x => x)
-            //    .Must(DrivingLicenceCheck)
-            //    .WithMessage("You must be of legal age to hold a driver's license");
-
             RuleFor(x => x)
-                .MustAsync(IsEmailAlreadyExist)
+                .Must(IsEmailAlreadyExist)
                 .WithMessage("User with the given email already exists");
 
             RuleFor(x => x)
@@ -81,39 +67,9 @@ namespace CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount
             return dateChecked;
         }
 
-        //private bool UserIsAdult(AddUserAccountCommand arg)
-        //{
-        //    var daysOfEighteenYears = 6570;
-        //    var isAdult = true;
-
-        //    var userAge = (DateTime.UtcNow - arg.DateOfBirth).TotalDays < (daysOfEighteenYears + 1);
-
-        //    if (userAge)
-        //    {
-        //        isAdult = false;
-        //    }
-
-        //    return isAdult;
-        //}
-
-        //private bool DrivingLicenceCheck(AddUserAccountCommand arg)
-        //{
-        //    var daysOfEighteenYears = 6570;
-        //    var driverLicense = true;
-
-        //    var driverLicenseTime = (arg.DriverLicenseDate - arg.DateOfBirth).TotalDays < (daysOfEighteenYears + 1);
-
-        //    if (driverLicenseTime || arg.DriverLicenseDate < arg.DateOfBirth)
-        //    {
-        //        driverLicense = false;
-        //    }
-
-        //    return driverLicense;
-        //}
-
-        private async Task<bool> IsEmailAlreadyExist(AddUserAccountCommand user, CancellationToken cancellationToken)
+        private bool IsEmailAlreadyExist(AddUserAccountCommand user)
         {
-            var check = await _userRepository
+            var check =  _userRepository
                 .IsEmailAlreadyExist(user.Email);
 
             return !check;

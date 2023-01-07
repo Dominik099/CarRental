@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressById
 {
-    public class GetCarAddressByIdQueryHandler : IRequestHandler<GetCarAddressByIdQuery, CarAddressViewModel>
+    public class GetCarAddressByIdQueryHandler : IRequestHandler<GetCarAddressByIdQuery, CarAddressDto>
     {
         private readonly IAsyncRepository<CarAddress> _carAddressRepository;
         private readonly IMapper _mapper;
@@ -24,11 +24,11 @@ namespace CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressById
             _mapper = mapper;
         }
 
-        public async Task<CarAddressViewModel> Handle(GetCarAddressByIdQuery request, CancellationToken cancellation)
+        public async Task<CarAddressDto> Handle(GetCarAddressByIdQuery request, CancellationToken cancellation)
         {
             var carAddressById = await _carAddressRepository.GetByIdAsync(request.Id);
 
-            return _mapper.Map<CarAddressViewModel>(carAddressById);
+            return _mapper.Map<CarAddressDto>(carAddressById);
         }
     }
 }

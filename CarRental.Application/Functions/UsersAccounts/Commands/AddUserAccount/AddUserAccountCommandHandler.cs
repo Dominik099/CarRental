@@ -25,13 +25,6 @@ namespace CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount
 
         public async Task<AddUserAccountCommandResponse> Handle(AddUserAccountCommand command, CancellationToken cancellationToken)
         {
-            var validator = new AddUserAccountCommandValidator(_userRepository);
-            var validatorResult = await validator.ValidateAsync(command);
-
-            if(!validatorResult.IsValid)
-            {
-                return new AddUserAccountCommandResponse(validatorResult);
-            }
 
             var newUser = new User()
             {
@@ -48,7 +41,10 @@ namespace CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount
 
             newUser = await _userRepository.AddAsync(newUser);
 
-            return new AddUserAccountCommandResponse(newUser.Id);
+            return new AddUserAccountCommandResponse(/*newUser.Id*/)
+            {
+                Id = newUser.Id
+            };
         }
     }
 }

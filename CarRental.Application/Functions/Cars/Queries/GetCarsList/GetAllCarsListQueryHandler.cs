@@ -11,7 +11,7 @@ using CarRental.Application.Functions.Cars;
 
 namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
 {
-    public class GetAllCarsListQueryHandler : IRequestHandler<GetAllCarsListQuery, List<CarViewModel>>
+    public class GetAllCarsListQueryHandler : IRequestHandler<GetAllCarsListQuery, List<CarDto>>
     {
         private readonly IAsyncRepository<Car> _carRepository;
         private readonly IAsyncRepository<PriceCategory> _priceCategoryRepository;
@@ -24,11 +24,11 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
             _priceCategoryRepository = priceCategoryRepository;
         }
 
-        public async Task<List<CarViewModel>> Handle(GetAllCarsListQuery request, CancellationToken cancellationToken)
+        public async Task<List<CarDto>> Handle(GetAllCarsListQuery request, CancellationToken cancellationToken)
         {
 
             var cars = await _carRepository.GetAllAsync();
-            var carsList = _mapper.Map<List<CarViewModel>>(cars);
+            var carsList = _mapper.Map<List<CarDto>>(cars);
             var priceCategory = await _priceCategoryRepository.GetAllAsync();
 
             foreach(var x in cars)

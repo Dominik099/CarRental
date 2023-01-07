@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
 {
-    public class CarViewModel
+    public class CarDto
     {
         public int Id { get; set; }
         public string Mark { get; set; }

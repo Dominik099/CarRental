@@ -1,5 +1,7 @@
 ﻿using CarRental.Application.Contracts.Persistence;
+using CarRental.Application.Functions.RentalCalculator.Exceptions;
 using CarRental.Application.RentalCalculator;
+using CarRental.Domain.Entities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -32,10 +34,11 @@ namespace CarRental.Application.Functions.RentalCalculator.Queries
                 .WithMessage("The anticipated number of kilometres must be greater than 0");
 
             RuleFor(x => x.DriverLicenceDate)
-                .NotEmpty()  
+                .NotEmpty()
                 .WithMessage("You must enter the date of obtaining your driving license")
                 .NotNull()
-                .LessThan(DateTime.Now.AddDays(1));
+                .LessThan(DateTime.Now);
+ 
 
             RuleFor(x => x.RentalDate)
                 .NotEmpty()
@@ -52,13 +55,13 @@ namespace CarRental.Application.Functions.RentalCalculator.Queries
                 .WithMessage("The return date must be greater than the rental date");
 
             RuleFor(x => x)
-                .MustAsync(DriverIsNotTooYoung)
+                .Must(DriverIsNotTooYoung)
                 .WithMessage("You must have had a driving license for more than 3 years to rent a premium car");
         }
 
-        private async Task<bool> DriverIsNotTooYoung(RentalCalculatedQuery input, CancellationToken cancellationToken)
+        private bool DriverIsNotTooYoung(RentalCalculatedQuery input)
         {
-            var checkedLicense = await _carRepository.DriverIsNotTooYoung(input.CarId, input.DriverLicenceDate);
+            var checkedLicense = _carRepository.DriverIsNotTooYoung(input.CarId, input.DriverLicenceDate);
 
             return checkedLicense;
         }

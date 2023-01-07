@@ -12,6 +12,7 @@ using CarRental.Application.Functions.Cars.Queries.GetCarById;
 using CarRental.Domain.Entities;
 using AutoMapper;
 using CarRental.Application.Functions.RentalCalculator.Exceptions;
+using FluentValidation.Results;
 
 namespace CarRental.Application.Functions.RentalCalculator
 {
@@ -34,12 +35,6 @@ namespace CarRental.Application.Functions.RentalCalculator
 
         public async Task<RentalCalculatedQueryResponse> Handle(RentalCalculatedQuery request, CancellationToken cancellationToken)
         {
-            var validator = new RentalCalculatedQueryValidator(_carRepository);
-            var validatorResult = await validator.ValidateAsync(request);
-
-            if (!validatorResult.IsValid)
-                return new RentalCalculatedQueryResponse(validatorResult);
-
             var selectedCar = await _carRepository.GetByIdAsync(request.CarId);
 
             if (selectedCar is null)

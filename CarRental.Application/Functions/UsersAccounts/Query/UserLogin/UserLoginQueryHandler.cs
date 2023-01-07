@@ -24,30 +24,19 @@ namespace CarRental.Application.Functions.UsersAccounts.Query.UserLogin
     public class UserLoginQueryHandler : IRequestHandler<UserLoginQuery, UserLoginQueryResponse>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IAsyncRepository<Role> _roleRepository;
         private readonly AuthenticationSettings _authenticationSettings;
         private readonly IPasswordHasher<User> _passwordHasher;
-        private readonly IMapper _mapper;
 
-        public UserLoginQueryHandler(IUserRepository userRepository, IPasswordHasher<User> passwordHasher, IMapper mapper,
+        public UserLoginQueryHandler(IUserRepository userRepository, IPasswordHasher<User> passwordHasher,
             IAsyncRepository<Role> roleRepository, AuthenticationSettings authenticationSettings)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
-            _mapper = mapper;
-            _roleRepository = roleRepository;
             _authenticationSettings = authenticationSettings;
         }
 
         public async Task<UserLoginQueryResponse> Handle(UserLoginQuery request, CancellationToken cancellationToken)
         {
-            var validator = new UserLoginQueryValidator();
-            var validatorResult = await validator.ValidateAsync(request);
-
-            if (!validatorResult.IsValid)
-            {
-                return new UserLoginQueryResponse(validatorResult);
-            }
 
             var user = await _userRepository.GetByEmailAsync(request.Email);
 
@@ -84,7 +73,10 @@ namespace CarRental.Application.Functions.UsersAccounts.Query.UserLogin
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            var resultToken = new UserLoginQueryResponse(tokenHandler.WriteToken(token));
+            var resultToken = new UserLoginQueryResponse()
+            {
+                Token = tokenHandler.WriteToken(token)
+            };
 
             return resultToken;
         }

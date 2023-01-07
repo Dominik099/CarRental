@@ -19,6 +19,14 @@ using System.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using CarRental.Application;
+using CarRental.Application.RentalCalculator;
+using CarRental.Application.Functions.RentalCalculator.Queries;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Diagnostics;
+using CarRental.Application.Functions.Cars.Queries.GetCarById;
+using CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount;
+using CarRental.Application.Functions.UsersAccounts.Query.UserLogin;
 
 namespace CarRental.Api
 {
@@ -51,7 +59,7 @@ namespace CarRental.Api
                 };
             });
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddFluentValidation();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
@@ -63,6 +71,7 @@ namespace CarRental.Api
                 });
 
             });
+            builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
             builder.Services.AddDbContext<CarRentalContext>(
                 option => option
                 .UseSqlServer(builder.Configuration.GetConnectionString("CarRentalConnectionString"))
@@ -74,6 +83,9 @@ namespace CarRental.Api
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ErrorHandlingMiddleware>();
             builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            builder.Services.AddScoped<IValidator<RentalCalculatedQuery>, RentalCalculatedQueryValidator>();
+            builder.Services.AddScoped<IValidator<AddUserAccountCommand>, AddUserAccountCommandValidator>();
+            builder.Services.AddScoped<IValidator<UserLoginQuery>, UserLoginQueryValidator>();
 
             var app = builder.Build();
 
@@ -92,6 +104,7 @@ namespace CarRental.Api
             }
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
+
             app.UseAuthentication();
             app.UseHttpsRedirection();
 

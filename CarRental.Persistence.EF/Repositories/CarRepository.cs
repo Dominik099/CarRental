@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarRental.Application.Functions.RentalCalculator.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using CarRental.Common.Abstractions.Exceptions;
 
 namespace CarRental.Persistence.EF.Repositories
 {
@@ -17,12 +18,14 @@ namespace CarRental.Persistence.EF.Repositories
 
         }
 
-        public async Task<bool> DriverIsNotTooYoung(int carId, DateTime driverLicenceDate)
+
+
+        public bool DriverIsNotTooYoung(int carId, DateTime driverLicenceDate)
         {
-            var selectedCar = await _dbContext.Cars.FirstOrDefaultAsync(x => x.Id== carId);
+            var selectedCar =  _dbContext.Cars.FirstOrDefault(x => x.Id== carId);
 
             if (selectedCar is null)
-                throw new CarNotFoundException();
+                return true;
 
             var daysOfThreeYears = 1095;
             var checkedLicense = true;
@@ -34,7 +37,7 @@ namespace CarRental.Persistence.EF.Repositories
                 checkedLicense = false;
             }
 
-            return await Task.FromResult(checkedLicense);
+            return checkedLicense;
         }
     }
 }

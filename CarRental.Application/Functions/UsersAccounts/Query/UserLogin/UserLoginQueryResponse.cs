@@ -8,25 +8,11 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.UsersAccounts.Query.UserLogin
 {
-    public class UserLoginQueryResponse : BaseResponse
+    public class UserLoginQueryResponse 
     {
         public string Token { get; set; }
 
-        public UserLoginQueryResponse() : base()
-        { }
-
-        public UserLoginQueryResponse(ValidationResult validationResult)
-            : base(validationResult)
-        { }
-
-        public UserLoginQueryResponse(string message)
-        : base(message)
-        {
-            Token = message;
-        }
-
-        public UserLoginQueryResponse(string message, bool success)
-            : base(message, success)
+        public UserLoginQueryResponse() 
         { }
     }
 }

@@ -9,28 +9,12 @@ using FluentValidation;
 
 namespace CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount
 {
-    public class AddUserAccountCommandResponse : BaseResponse
+    public class AddUserAccountCommandResponse
     {
         public int Id { get; set; }
 
         public AddUserAccountCommandResponse() : base()
         { }
 
-        public AddUserAccountCommandResponse(ValidationResult validationResult)
-            : base(validationResult)
-        { }
-
-        public AddUserAccountCommandResponse(string message)
-        : base(message)
-        { }
-
-        public AddUserAccountCommandResponse(string message, bool success)
-            : base(message, success)
-        { }
-
-        public AddUserAccountCommandResponse(int id)
-        {
-            Id = id;
-        }
     }
 }

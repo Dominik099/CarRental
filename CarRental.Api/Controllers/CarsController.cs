@@ -21,14 +21,14 @@ namespace CarRental.Api.Controllers
 
         [HttpGet(Name = "GetAllCars")]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<ActionResult<List<CarViewModel>>> GetAllCars()
+        public async Task<ActionResult<List<CarDto>>> GetAllCars()
         {
             var carList = await _mediator.Send(new GetAllCarsListQuery());
             return Ok(carList);
         }
 
         [HttpGet("{id}", Name = "GetCarById")]
-        public async Task<ActionResult<CarViewModel>> GetCarById(int id)
+        public async Task<ActionResult<CarDto>> GetCarById(int id)
         {
             var carById = await _mediator.Send(new GetCarByIdQuery() { Id = id});
             return Ok(carById);

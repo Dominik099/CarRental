@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList
 {
-    public class CarAddressViewModel
+    public class CarAddressDto
     {
         public int Id { get; set; }
         public string City { get; set; }

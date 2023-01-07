@@ -10,7 +10,7 @@ using AutoMapper;
 
 namespace CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList
 {
-    public class GetCarAddressesListQueryHandler : IRequestHandler<GetCarAddressesListQuery, List<CarAddressViewModel>>
+    public class GetCarAddressesListQueryHandler : IRequestHandler<GetCarAddressesListQuery, List<CarAddressDto>>
     {
         private readonly IAsyncRepository<CarAddress> _carAddressRepository;
         private readonly IMapper _mapper;
@@ -21,12 +21,12 @@ namespace CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList
             _mapper = mapper;
         }
 
-        public async Task<List<CarAddressViewModel>> Handle(GetCarAddressesListQuery request, CancellationToken cancellation)
+        public async Task<List<CarAddressDto>> Handle(GetCarAddressesListQuery request, CancellationToken cancellation)
         {
             var carAddressList = await _carAddressRepository.GetAllAsync();
             var carAddressListOrdered = carAddressList.OrderBy(x => x.City);
 
-            return _mapper.Map<List<CarAddressViewModel>>(carAddressList).ToList();
+            return _mapper.Map<List<CarAddressDto>>(carAddressList).ToList();
         }
     } 
 }

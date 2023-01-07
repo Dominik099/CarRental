@@ -9,6 +9,7 @@ namespace CarRental.Application.Contracts.Persistence
 {
     public interface ICarRepository : IAsyncRepository<Car>
     {
-        Task<bool> DriverIsNotTooYoung(int carId, DateTime driverLicencedate);
+        //Task<bool> DriverIsNotTooYoung(int carId, DateTime driverLicencedate);
+        bool DriverIsNotTooYoung(int carId, DateTime driverLicencedate);
     }
 }

@@ -9,7 +9,7 @@ using CarRental.Application.Functions.Cars.Queries.GetCarsList;
 
 namespace CarRental.Application.Functions.Cars.Queries.GetCarById
 {
-    public class GetCarByIdQuery : IRequest<CarViewModel>
+    public class GetCarByIdQuery : IRequest<CarDto>
     {
         public int Id { get; set; }
     }

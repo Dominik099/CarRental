@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
+using CarRental.Application.Functions.RentalCalculator.Exceptions;
 
 namespace CarRental.Application.Functions.Cars.Queries.GetCarById
 {
-    public class GetCarByIdQueryHandler : IRequestHandler<GetCarByIdQuery, CarViewModel>
+    public class GetCarByIdQueryHandler : IRequestHandler<GetCarByIdQuery, CarDto>
     {
         private readonly IAsyncRepository<Car> _carRepository;
         private readonly IAsyncRepository<PriceCategory> _priceCategoryRepository;
@@ -24,17 +25,25 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarById
             _priceCategoryRepository = priceCategoryRepository;
         }
 
-        public async Task<CarViewModel> Handle(GetCarByIdQuery request, CancellationToken cancellationToken)
+        public async Task<CarDto> Handle(GetCarByIdQuery request, CancellationToken cancellationToken)
         {
 
             var car = await _carRepository.GetByIdAsync(request.Id);
-            var carMapped = _mapper.Map<CarViewModel>(car);
+
+            if (car is null)
+            {
+                throw new CarNotFoundException();
+            }
+
+            var carMapped = _mapper.Map<CarDto>(car);
 
             var priceCategory = await _priceCategoryRepository.GetByIdAsync(car.PriceCategoryId);
 
             carMapped.PriceCategory = _mapper.Map<PriceCategoryDto>(priceCategory);
 
             return carMapped;
+
+
         }
     }
 }

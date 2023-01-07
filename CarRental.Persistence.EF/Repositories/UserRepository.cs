@@ -23,12 +23,12 @@ namespace CarRental.Persistence.EF.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<bool> IsEmailAlreadyExist(string email)
+        public bool IsEmailAlreadyExist(string email)
         {
             var matches = _dbContext.Users
                 .Any(x => x.Email.Equals(email));
 
-            return await Task.FromResult(matches);
+            return matches;
         }
 
     }

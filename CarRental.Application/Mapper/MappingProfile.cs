@@ -16,11 +16,11 @@ namespace CarRental.Application.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Car, CarViewModel>();
+            CreateMap<Car, CarDto>();
             CreateMap<Car, PriceCategoryDto>();
             CreateMap<PriceCategory, PriceCategoryDto>();
-            CreateMap<PriceCategoryDto, CarViewModel>();
-            CreateMap<CarAddress, CarAddressViewModel>().ReverseMap();
+            CreateMap<PriceCategoryDto, CarDto>();
+            CreateMap<CarAddress, CarAddressDto>().ReverseMap();
         }
     }
 }
