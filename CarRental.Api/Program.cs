@@ -27,6 +27,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using CarRental.Application.Functions.Cars.Queries.GetCarById;
 using CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount;
 using CarRental.Application.Functions.UsersAccounts.Query.UserLogin;
+using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
 
 namespace CarRental.Api
 {
@@ -80,12 +81,14 @@ namespace CarRental.Api
             builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
             builder.Services.AddScoped<ICarRepository, CarRepository>();
+            builder.Services.AddScoped<ICarAddressRepository, CarAddressRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ErrorHandlingMiddleware>();
             builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             builder.Services.AddScoped<IValidator<RentalCalculatedQuery>, RentalCalculatedQueryValidator>();
             builder.Services.AddScoped<IValidator<AddUserAccountCommand>, AddUserAccountCommandValidator>();
             builder.Services.AddScoped<IValidator<UserLoginQuery>, UserLoginQueryValidator>();
+            builder.Services.AddScoped<IValidator<AddCarAddressCommand>, AddCarAddressCommandValidator>();
 
             var app = builder.Build();
 

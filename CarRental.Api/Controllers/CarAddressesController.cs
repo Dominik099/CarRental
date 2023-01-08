@@ -4,6 +4,7 @@ using CarRental.Application.Functions.Cars.Queries.GetCarsList;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
 
 namespace CarRental.Api.Controllers
 {
@@ -30,6 +31,14 @@ namespace CarRental.Api.Controllers
         {
             var carAddress = await _mediator.Send(new GetCarAddressByIdQuery() { Id = id});
             return Ok(carAddress);
+        }
+
+        [HttpPost("add", Name = "AddCarAddress")]
+        public async Task<ActionResult<AddCarAddressCommandResponse>> AddCarAddress([FromQuery] AddCarAddressCommand addCarAddressCommand)
+        {
+            var newCarAddress = await _mediator.Send(addCarAddressCommand);
+
+            return Ok(newCarAddress);
         }
     }
 }
