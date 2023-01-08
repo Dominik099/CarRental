@@ -9,6 +9,7 @@ using CarRental.Application.Functions.Cars.Queries.GetCarsList;
 using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList;
 using CarRental.Application.Functions.UsersAccounts.Commands;
 using CarRental.Application.Functions.UsersAccounts.Query.UserLogin;
+using CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress;
 
 namespace CarRental.Application.Mapper
 {
@@ -21,6 +22,7 @@ namespace CarRental.Application.Mapper
             CreateMap<PriceCategory, PriceCategoryDto>();
             CreateMap<PriceCategoryDto, CarDto>();
             CreateMap<CarAddress, CarAddressDto>().ReverseMap();
+            CreateMap<CarAddress, UpdateCarAddressCommand>().ReverseMap();
         }
     }
 }

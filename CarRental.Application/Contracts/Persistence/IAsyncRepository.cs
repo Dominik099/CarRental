@@ -13,5 +13,6 @@ namespace CarRental.Application.Contracts.Persistence
         Task<T> GetByIdAsync(int id);
         Task<T> AddAsync(T entity);
         Task DeleteAsync(T entity);
+        Task UpdateAsync(T entity);
     }
 }

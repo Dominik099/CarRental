@@ -14,7 +14,6 @@ namespace CarRental.Persistence.EF.Configuration
         public void Configure(EntityTypeBuilder<Car> ab)
         {
             ab.Property(x => x.AVGFuelConsumption).HasPrecision(3, 1);
-            ab.Property(x => x.Engine).HasMaxLength(30);
             ab.HasOne(x => x.CarAddress)
                 .WithMany(x => x.Cars)
                 .HasForeignKey(x => x.CarAddressId);

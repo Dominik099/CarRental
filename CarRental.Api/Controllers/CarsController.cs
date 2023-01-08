@@ -5,6 +5,7 @@ using CarRental.Application.Functions.Cars.Queries.GetCarsList;
 using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList;
 using CarRental.Application.Functions.Cars.Queries.GetCarById;
 using Microsoft.AspNetCore.Authorization;
+using CarRental.Application.Functions.Cars.Commands.AddCar;
 
 namespace CarRental.Api.Controllers
 {
@@ -20,7 +21,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpGet(Name = "GetAllCars")]
-        [Authorize(Roles = "Admin,Manager")]
+        //[Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<List<CarDto>>> GetAllCars()
         {
             var carList = await _mediator.Send(new GetAllCarsListQuery());
@@ -32,6 +33,13 @@ namespace CarRental.Api.Controllers
         {
             var carById = await _mediator.Send(new GetCarByIdQuery() { Id = id});
             return Ok(carById);
+        }
+
+        [HttpPost("add", Name = "AddCar")]
+        public async Task<ActionResult> AddCar(AddCarCommand car)
+        {
+            var newCar = await _mediator.Send(car);
+            return Ok();
         }
     }
 }

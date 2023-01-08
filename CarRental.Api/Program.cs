@@ -28,6 +28,8 @@ using CarRental.Application.Functions.Cars.Queries.GetCarById;
 using CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount;
 using CarRental.Application.Functions.UsersAccounts.Query.UserLogin;
 using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
+using CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress;
+using CarRental.Application.Functions.Cars.Commands.AddCar;
 
 namespace CarRental.Api
 {
@@ -89,6 +91,8 @@ namespace CarRental.Api
             builder.Services.AddScoped<IValidator<AddUserAccountCommand>, AddUserAccountCommandValidator>();
             builder.Services.AddScoped<IValidator<UserLoginQuery>, UserLoginQueryValidator>();
             builder.Services.AddScoped<IValidator<AddCarAddressCommand>, AddCarAddressCommandValidator>();
+            builder.Services.AddScoped<IValidator<UpdateCarAddressCommand>, UpdateCarAddressValidator>();
+            builder.Services.AddScoped<IValidator<AddCarCommand>, AddCarCommandValidator>();
 
             var app = builder.Build();
 

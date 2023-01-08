@@ -1,4 +1,6 @@
-﻿using CarRental.Domain.Entities;
+﻿using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
+using CarRental.Application.Functions.Cars.Commands.AddCar;
+using CarRental.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,8 @@ namespace CarRental.Application.Contracts.Persistence
 {
     public interface ICarRepository : IAsyncRepository<Car>
     {
-        //Task<bool> DriverIsNotTooYoung(int carId, DateTime driverLicencedate);
         bool DriverIsNotTooYoung(int carId, DateTime driverLicencedate);
+        Task<bool> IsCarAlreadyExistAsync(AddCarCommand car);
+        Task FindAndUpdateAlreadyExistCar(AddCarCommand car);
     }
 }
