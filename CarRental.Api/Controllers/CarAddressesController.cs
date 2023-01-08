@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
+using CarRental.Application.Functions.CarAddresses.Commands.DeleteCarAddress;
 
 namespace CarRental.Api.Controllers
 {
@@ -39,6 +40,14 @@ namespace CarRental.Api.Controllers
             var newCarAddress = await _mediator.Send(addCarAddressCommand);
 
             return Ok(newCarAddress);
+        }
+
+        [HttpPost("delete", Name = "DeleteCarAddress")]
+        public async Task<ActionResult> DeleteCarAddress([FromQuery] int id)
+        {
+            var deletedCarAddress = await _mediator.Send(new DeleteCarAddressCommand() { Id = id});
+
+            return Ok();
         }
     }
 }

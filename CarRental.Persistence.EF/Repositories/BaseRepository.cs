@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarRental.Application.Contracts.Persistence;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.Persistence.EF.Repositories
@@ -33,6 +34,13 @@ namespace CarRental.Persistence.EF.Repositories
             await _dbContext.SaveChangesAsync();
 
             return entity;
+        }
+
+        public async Task DeleteAsync(T entity)
+        {
+            _dbContext.Set<T>().Remove(entity);
+            await _dbContext.SaveChangesAsync();
+
         }
     }
 }
