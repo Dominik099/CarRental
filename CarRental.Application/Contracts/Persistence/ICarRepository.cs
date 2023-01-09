@@ -13,6 +13,6 @@ namespace CarRental.Application.Contracts.Persistence
     {
         bool DriverIsNotTooYoung(int carId, DateTime driverLicencedate);
         Task<bool> IsCarAlreadyExistAsync(AddCarCommand car);
-        Task FindAndUpdateAlreadyExistCar(AddCarCommand car);
+        Task<Car> FindAndUpdateAlreadyExistCar(AddCarCommand car);
     }
 }

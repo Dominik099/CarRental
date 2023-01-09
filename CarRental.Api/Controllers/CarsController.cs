@@ -36,7 +36,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpPost("add", Name = "AddCar")]
-        public async Task<ActionResult> AddCar(AddCarCommand car)
+        public async Task<ActionResult> AddCar([FromQuery] AddCarCommand car)
         {
             var newCar = await _mediator.Send(car);
             return Ok();

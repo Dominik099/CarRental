@@ -25,6 +25,7 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
             if (carAlreadyExist)
             {
                 var update = _carRepository.FindAndUpdateAlreadyExistCar(request);
+                _carRepository.UpdateAsync(await update);
 
                 return Unit.Value;
 

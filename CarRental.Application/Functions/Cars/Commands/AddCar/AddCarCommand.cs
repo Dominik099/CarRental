@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Functions.Cars.Commands.AddCar
 {
-    public class AddCarCommand : IRequest
+    public class AddCarCommand : IRequest<Unit>
     {
         public string Mark { get; set; }
         public string Model { get; set; }
