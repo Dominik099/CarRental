@@ -85,6 +85,7 @@ namespace CarRental.Api
             builder.Services.AddScoped<ICarRepository, CarRepository>();
             builder.Services.AddScoped<ICarAddressRepository, CarAddressRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IPriceCategoryRepository, PriceCategoryRepository>();
             builder.Services.AddScoped<ErrorHandlingMiddleware>();
             builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             builder.Services.AddScoped<IValidator<RentalCalculatedQuery>, RentalCalculatedQueryValidator>();

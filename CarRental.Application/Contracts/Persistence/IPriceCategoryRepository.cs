@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace CarRental.Application.Contracts.Persistence
 {
-    public interface ICarAddressRepository : IAsyncRepository<CarAddress>
+    public interface IPriceCategoryRepository : IAsyncRepository<PriceCategory>
     {
-        bool CityAndStreetAlreadyExist(string city, string street);
-        bool IsCarAddressExist(int carAddressId);
+        bool IsPriceCategoryExist(int id);
     }
 }

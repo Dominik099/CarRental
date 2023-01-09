@@ -6,6 +6,9 @@ using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList;
 using CarRental.Application.Functions.Cars.Queries.GetCarById;
 using Microsoft.AspNetCore.Authorization;
 using CarRental.Application.Functions.Cars.Commands.AddCar;
+using CarRental.Application.Functions.Cars.Commands.DeleteCar;
+using CarRental.Application.Functions.Cars.Commands.DeleteCarGroup;
+using CarRental.Application.Functions.Cars.Commands.UpdateCar;
 
 namespace CarRental.Api.Controllers
 {
@@ -39,6 +42,28 @@ namespace CarRental.Api.Controllers
         public async Task<ActionResult> AddCar([FromQuery] AddCarCommand car)
         {
             var newCar = await _mediator.Send(car);
+            return Ok();
+        }
+
+        [HttpDelete("delete", Name = "DeleteCar")]
+        public async Task<ActionResult> DeleteCar([FromQuery] int id)
+        {
+            var deletedCar = await _mediator.Send(new DeleteCarCommand() { Id = id});
+            return Ok();
+        }
+
+        [HttpDelete("group-delete", Name = "DeleteCarGroup")]
+        public async Task<ActionResult> DeleteCarGroup([FromQuery] int id)
+        {
+            var deletedCars = await _mediator.Send(new DeleteCarGroupCommand() { Id = id });
+            return Ok();
+        }
+
+        [HttpPut("update", Name = "UpdateCar")]
+        public async Task<ActionResult> UpdateCar([FromQuery] UpdateCarCommand updateCarCommand)
+        {
+            var update = await _mediator.Send(updateCarCommand);
+
             return Ok();
         }
     }

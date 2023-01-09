@@ -30,5 +30,12 @@ namespace CarRental.Persistence.EF.Repositories
 
             return false;
         }
+
+        public bool IsCarAddressExist (int carAddressId)
+        {
+            var isAddressExist = _dbContext.CarAddresses.Any(x => x.Id == carAddressId);
+
+            return isAddressExist;
+        }
     }
 }
