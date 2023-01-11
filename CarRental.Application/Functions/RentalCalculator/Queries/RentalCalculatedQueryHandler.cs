@@ -40,6 +40,8 @@ namespace CarRental.Application.Functions.RentalCalculator
             if (selectedCar is null)
                 throw new CarNotFoundException();
 
+            var numberOfCars = await _carRepository.NumberOfCars(selectedCar.Mark, selectedCar.Model);
+
             var priceCategory = await _priceCategoryRepository.GetByIdAsync(selectedCar.PriceCategoryId);
 
             var periodCost = baseCost * (request.ReturnDate - request.RentalDate).Days;
@@ -49,7 +51,7 @@ namespace CarRental.Application.Functions.RentalCalculator
                 youngDriverCost = (periodCost + categoryCost) * 0.2m;
             }
 
-            if (selectedCar.NumberOfCars < 3)
+            if (numberOfCars < 3)
             {
                 fewPiecesCost = (periodCost + categoryCost + youngDriverCost) * 0.15m;
             }

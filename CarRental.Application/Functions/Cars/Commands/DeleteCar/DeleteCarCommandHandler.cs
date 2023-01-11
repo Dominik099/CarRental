@@ -26,14 +26,6 @@ namespace CarRental.Application.Functions.Cars.Commands.DeleteCar
                 throw new CarNotFoundException();
             }
 
-            if(car.NumberOfCars > 1) 
-            {
-                car.NumberOfCars -= 1;
-                await _carRepository.UpdateAsync(car);
-
-                return Unit.Value;
-            }
-
             await _carRepository.DeleteAsync(car);
 
             return Unit.Value;

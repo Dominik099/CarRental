@@ -18,6 +18,11 @@ namespace CarRental.Persistence.EF.Repositories
             _dbContext = dbContext;
         }
 
+        //public async Task<List<T>> GetAllAsync()
+        //{
+        //    return await _dbContext.Set<T>().ToListAsync();
+        //}
+
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
             return await _dbContext.Set<T>().ToListAsync();

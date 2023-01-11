@@ -20,39 +20,26 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
 
             RuleFor(x => x.Mark)
                 .NotEmpty()
-                .WithMessage("Mark cannot be empty")
+                .WithMessage("Mark must not be empty")
                 .MaximumLength(20)
                 .WithMessage("Too long mark name");
 
             RuleFor(x => x.Model)
                 .NotEmpty()
-                .WithMessage("Model cannot be empty");
-
-            RuleFor(x => x.YearOfProduction)
-                .NotEmpty()
-                .WithMessage("Year of production cannot be empty");
-
-            RuleFor(x => x)
-                .Must(InvalidYearOfProduction)
-                .WithMessage("Invalid year of production");
-
-            RuleFor(x => x.EngineCapacity)
-                .NotEmpty()
-                .WithMessage("Engine cannot be empty")
-                .PrecisionScale(3, 1, false);
+                .WithMessage("Model must not be empty");
 
             RuleFor(x => x.AVGFuelConsumption)
                 .NotEmpty()
-                .WithMessage("Average fuel consumption cannot be empty")
+                .WithMessage("Average fuel consumption must not be empty")
                 .PrecisionScale(3, 1, false); ;
 
             RuleFor(x => x.CarAddressId)
                 .NotEmpty()
-                .WithMessage("Address cannot be empty");               
+                .WithMessage("Address must not be empty");               
 
             RuleFor(x => x.PriceCategoryId)
                 .NotEmpty()
-                .WithMessage("Price category cannot be empty");
+                .WithMessage("Price category must not be empty");
 
             RuleFor(x => x)
                 .Must(IsAddressExist)
@@ -61,16 +48,12 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
             RuleFor(x => x)
                 .Must(IsPriceCategoryExist)
                 .WithMessage("The price category with the specified ID number does not exist");
-        }
 
-        private bool InvalidYearOfProduction(AddCarCommand car)
-        {
-            if (car.YearOfProduction > DateTime.Now.Year)
-            {
-                return false;
-            }
-
-            return true;
+            RuleFor(x => x.RegistrationNumber)
+                .NotEmpty()
+                .WithMessage("Registration number must not be empty")
+                .MaximumLength(6);
+                
         }
 
         private bool IsAddressExist(AddCarCommand car)

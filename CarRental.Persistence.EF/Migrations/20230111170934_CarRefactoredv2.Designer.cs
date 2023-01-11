@@ -4,6 +4,7 @@ using CarRental.Persistence.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.Persistence.EF.Migrations
 {
     [DbContext(typeof(CarRentalContext))]
-    partial class CarRentalContextModelSnapshot : ModelSnapshot
+    [Migration("20230111170934_CarRefactoredv2")]
+    partial class CarRefactoredv2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,8 +67,7 @@ namespace CarRental.Persistence.EF.Migrations
                             CarAddressId = 1,
                             Mark = "Peugeot",
                             Model = "407",
-                            PriceCategoryId = 2,
-                            RegistrationNumber = "RZ52475"
+                            PriceCategoryId = 2
                         },
                         new
                         {
@@ -75,8 +76,7 @@ namespace CarRental.Persistence.EF.Migrations
                             CarAddressId = 2,
                             Mark = "Peugeot",
                             Model = "406 Coupe",
-                            PriceCategoryId = 2,
-                            RegistrationNumber = "KR63975"
+                            PriceCategoryId = 2
                         },
                         new
                         {
@@ -85,8 +85,7 @@ namespace CarRental.Persistence.EF.Migrations
                             CarAddressId = 1,
                             Mark = "Suzuki",
                             Model = "Swift",
-                            PriceCategoryId = 2,
-                            RegistrationNumber = "RZ12846"
+                            PriceCategoryId = 2
                         },
                         new
                         {
@@ -95,8 +94,7 @@ namespace CarRental.Persistence.EF.Migrations
                             CarAddressId = 1,
                             Mark = "Audi",
                             Model = "S8",
-                            PriceCategoryId = 4,
-                            RegistrationNumber = "RZ91476"
+                            PriceCategoryId = 4
                         },
                         new
                         {
@@ -105,8 +103,7 @@ namespace CarRental.Persistence.EF.Migrations
                             CarAddressId = 2,
                             Mark = "Mercedes-Benz",
                             Model = "GLE",
-                            PriceCategoryId = 4,
-                            RegistrationNumber = "KR71584"
+                            PriceCategoryId = 4
                         },
                         new
                         {
@@ -115,8 +112,7 @@ namespace CarRental.Persistence.EF.Migrations
                             CarAddressId = 2,
                             Mark = "Volkswagen",
                             Model = "T-Roc",
-                            PriceCategoryId = 3,
-                            RegistrationNumber = "KR14582"
+                            PriceCategoryId = 3
                         },
                         new
                         {
@@ -125,8 +121,7 @@ namespace CarRental.Persistence.EF.Migrations
                             CarAddressId = 2,
                             Mark = "Citroen",
                             Model = "DS4",
-                            PriceCategoryId = 3,
-                            RegistrationNumber = "KR61483"
+                            PriceCategoryId = 3
                         },
                         new
                         {
@@ -135,8 +130,7 @@ namespace CarRental.Persistence.EF.Migrations
                             CarAddressId = 3,
                             Mark = "Skoda",
                             Model = "Octavia",
-                            PriceCategoryId = 1,
-                            RegistrationNumber = "DW31674"
+                            PriceCategoryId = 1
                         },
                         new
                         {
@@ -145,8 +139,7 @@ namespace CarRental.Persistence.EF.Migrations
                             CarAddressId = 3,
                             Mark = "Seat",
                             Model = "Leon",
-                            PriceCategoryId = 1,
-                            RegistrationNumber = "DW71463"
+                            PriceCategoryId = 1
                         });
                 });
 

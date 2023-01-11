@@ -30,7 +30,6 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
             var cars = await _carRepository.GetAllAsync();
             var carsList = _mapper.Map<List<CarDto>>(cars);
             var priceCategory = await _priceCategoryRepository.GetAllAsync();
-
             foreach(var x in cars)
             {
                 foreach (var car in carsList)
@@ -45,6 +44,7 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
                 }
             }
 
+            //carsList.DistinctBy(x => x.Model);
             return carsList;
 
         }

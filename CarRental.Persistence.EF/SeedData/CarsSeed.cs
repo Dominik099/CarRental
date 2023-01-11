@@ -21,12 +21,9 @@ namespace CarRental.Persistence.EF.SeedData
                 Id = 1,
                 Mark = "Peugeot",
                 Model = "407",
-                YearOfProduction = 2004,
-                EngineCapacity = 2.0m,
-                EnginePower = 136,
                 AVGFuelConsumption = 6.2m,
+                RegistrationNumber = "RZ52475",
                 PriceCategoryId = PriceCategoriesSeedId.Standard,
-                NumberOfCars = 5,
                 CarAddressId = CarAddressesSeedId.Rzeszow
             };
             cars.Add(car1);
@@ -36,12 +33,9 @@ namespace CarRental.Persistence.EF.SeedData
                 Id = 2,
                 Mark = "Peugeot",
                 Model = "406 Coupe",
-                YearOfProduction = 1998,
-                EngineCapacity = 2.0m,
-                EnginePower = 132,
                 AVGFuelConsumption = 10.5m,
+                RegistrationNumber = "KR63975",
                 PriceCategoryId = PriceCategoriesSeedId.Standard,
-                NumberOfCars = 2,
                 CarAddressId = CarAddressesSeedId.Krakow
             };
             cars.Add(car2);
@@ -51,12 +45,9 @@ namespace CarRental.Persistence.EF.SeedData
                 Id = 3,
                 Mark = "Suzuki",
                 Model = "Swift",
-                YearOfProduction = 2017,
-                EngineCapacity = 1.2m,
-                EnginePower = 78,
                 AVGFuelConsumption = 5.5m,
+                RegistrationNumber = "RZ12846",
                 PriceCategoryId = PriceCategoriesSeedId.Standard,
-                NumberOfCars = 4,
                 CarAddressId = CarAddressesSeedId.Rzeszow
             };
             cars.Add(car3);
@@ -66,12 +57,9 @@ namespace CarRental.Persistence.EF.SeedData
                 Id = 4,
                 Mark = "Audi",
                 Model = "S8",
-                YearOfProduction = 2022,
-                EngineCapacity = 4.0m,
-                EnginePower = 571,
                 AVGFuelConsumption = 13.5m,
+                RegistrationNumber = "RZ91476",
                 PriceCategoryId = PriceCategoriesSeedId.Premium,
-                NumberOfCars = 2,
                 CarAddressId = CarAddressesSeedId.Rzeszow,
             };
             cars.Add(car4);
@@ -81,12 +69,9 @@ namespace CarRental.Persistence.EF.SeedData
                 Id = 5,
                 Mark = "Mercedes-Benz",
                 Model = "GLE",
-                YearOfProduction = 2021,
-                EngineCapacity = 2.0m,
-                EnginePower = 211,
                 AVGFuelConsumption = 9.2m,
+                RegistrationNumber = "KR71584",
                 PriceCategoryId = PriceCategoriesSeedId.Premium,
-                NumberOfCars = 9,
                 CarAddressId = CarAddressesSeedId.Krakow,
             };
             cars.Add(car5);
@@ -96,12 +81,9 @@ namespace CarRental.Persistence.EF.SeedData
                 Id = 6,
                 Mark = "Volkswagen",
                 Model = "T-Roc",
-                YearOfProduction = 2022,
-                EngineCapacity = 1.5m,
-                EnginePower = 150,
                 AVGFuelConsumption = 5.5m,
+                RegistrationNumber = "KR14582",
                 PriceCategoryId = PriceCategoriesSeedId.Medium,
-                NumberOfCars = 1,
                 CarAddressId = CarAddressesSeedId.Krakow,
             };
             cars.Add(car6);
@@ -111,12 +93,9 @@ namespace CarRental.Persistence.EF.SeedData
                 Id = 7,
                 Mark = "Citroen",
                 Model = "DS4",
-                YearOfProduction = 2012,
-                EngineCapacity = 1.6m,
-                EnginePower = 114,
                 AVGFuelConsumption = 5.5m,
+                RegistrationNumber = "KR61483",
                 PriceCategoryId = PriceCategoriesSeedId.Medium,
-                NumberOfCars = 3,
                 CarAddressId = CarAddressesSeedId.Krakow,
             };
             cars.Add(car7);
@@ -126,12 +105,9 @@ namespace CarRental.Persistence.EF.SeedData
                 Id = 8,
                 Mark = "Skoda",
                 Model = "Octavia",
-                YearOfProduction = 2006,
-                EngineCapacity = 2.0m,
-                EnginePower = 200,
                 AVGFuelConsumption = 9.0m,
+                RegistrationNumber = "DW31674",
                 PriceCategoryId = PriceCategoriesSeedId.Basic,
-                NumberOfCars = 5,
                 CarAddressId = CarAddressesSeedId.Wroclaw,
             };
             cars.Add(car8);
@@ -141,12 +117,9 @@ namespace CarRental.Persistence.EF.SeedData
                 Id = 9,
                 Mark = "Seat",
                 Model = "Leon",
-                YearOfProduction = 2007,
-                EngineCapacity = 1.6m,
-                EnginePower = 102,
                 AVGFuelConsumption = 8.5m,
+                RegistrationNumber = "DW71463",
                 PriceCategoryId = PriceCategoriesSeedId.Basic,
-                NumberOfCars = 2,
                 CarAddressId = CarAddressesSeedId.Wroclaw,
             };
             cars.Add(car9);

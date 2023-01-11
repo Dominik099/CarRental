@@ -47,40 +47,32 @@ namespace CarRental.Persistence.EF.Repositories
         {
             var matches = _dbContext.Cars
                 .Any(x => x.Mark.Equals(car.Mark) && x.Model.Equals(car.Model)
-                && x.EngineCapacity.Equals(car.EngineCapacity) && x.EnginePower.Equals(car.EnginePower)
                 && x.CarAddressId.Equals(car.CarAddressId));
-
-            //var modelMatches = _dbContext.Cars
-            //    .Any(x => x.Model.Equals(car.Model));
-
-            //var engineCapacityMatches = _dbContext.Cars
-            //    .Any(x => x.EngineCapacity.Equals(car.EngineCapacity));
-
-            //var enginePowerMatches = _dbContext.Cars
-            //    .Any(x => x.EnginePower.Equals(car.EnginePower));
-
-            //if (markMatches && modelMatches && engineCapacityMatches && enginePowerMatches)
-            //{
-            //    return Task.FromResult(true);
-            //}
-
-            //return Task.FromResult(false);
 
             return Task.FromResult(matches);
         }
 
-        public async Task<Car> FindAndUpdateAlreadyExistCar(AddCarCommand car)
+        public async Task<int> NumberOfCars(string mark, string model)
         {
-            var markAlreadyExist = await _dbContext.Cars
-                .Where(x => x.Mark == car.Mark && x.Model == car.Model
-                && x.EngineCapacity == car.EngineCapacity && x.EnginePower == car.EnginePower
-                && x.CarAddressId == car.CarAddressId)
-                .FirstOrDefaultAsync();
+            var cars = await _dbContext.Cars
+                .Where(x => x.Mark.Equals(mark) && x.Model.Equals(model))
+                .ToListAsync();
 
-            markAlreadyExist.NumberOfCars += 1;
+            var numberOfCars = cars.Count();
 
-            return markAlreadyExist;
-            
+            return numberOfCars;
         }
+
+        //public async Task<Car> FindAndUpdateAlreadyExistCar(AddCarCommand car)
+        //{
+        //    var markAlreadyExist = await _dbContext.Cars
+        //        .Where(x => x.Mark == car.Mark && x.Model == car.Model
+        //        && x.CarAddressId == car.CarAddressId)
+        //        .FirstOrDefaultAsync();
+
+
+        //    return markAlreadyExist;
+
+        //}
     }
 }

@@ -20,26 +20,23 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
 
         public async Task<Unit> Handle(AddCarCommand request, CancellationToken cancellationToken)
         {
-            var carAlreadyExist = await _carRepository.IsCarAlreadyExistAsync(request);
+            //var carAlreadyExist = await _carRepository.IsCarAlreadyExistAsync(request);
 
-            if (carAlreadyExist)
-            {
-                var update = await _carRepository.FindAndUpdateAlreadyExistCar(request);
-                _carRepository.UpdateAsync(update);
+            //if (carAlreadyExist)
+            //{
+            //    var update = await _carRepository.FindAndUpdateAlreadyExistCar(request);
+            //    _carRepository.UpdateAsync(update);
 
-                return Unit.Value;
+            //    return Unit.Value;
 
-            }
+            //}
 
             var newCar = new Car()
             {
                 Mark = request.Mark,
                 Model = request.Model,
-                YearOfProduction = request.YearOfProduction,
-                EngineCapacity = request.EngineCapacity,
-                EnginePower = request.EnginePower,
                 AVGFuelConsumption = request.AVGFuelConsumption,
-                NumberOfCars = 1,
+                RegistrationNumber= request.RegistrationNumber,
                 CarAddressId = request.CarAddressId,
                 PriceCategoryId = request.PriceCategoryId,
             };

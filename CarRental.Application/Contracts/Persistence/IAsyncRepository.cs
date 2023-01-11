@@ -10,6 +10,7 @@ namespace CarRental.Application.Contracts.Persistence
     public interface IAsyncRepository<T> where T : class
     {
         Task<IReadOnlyList<T>> GetAllAsync();
+        //Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
         Task<T> AddAsync(T entity);
         Task DeleteAsync(T entity);

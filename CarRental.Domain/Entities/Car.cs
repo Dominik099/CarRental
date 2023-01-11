@@ -11,11 +11,8 @@ namespace CarRental.Domain.Entities
         public int Id { get; set; }
         public string Mark { get; set; }
         public string Model { get; set; }
-        public int YearOfProduction { get; set; }
-        public decimal EngineCapacity { get; set; }
-        public int EnginePower { get; set; }
         public decimal AVGFuelConsumption { get; set; }
-        public int NumberOfCars { get; set; }
+        public string RegistrationNumber { get; set; }
 
         public CarAddress CarAddress { get; set; }
         public int CarAddressId { get; set; }
