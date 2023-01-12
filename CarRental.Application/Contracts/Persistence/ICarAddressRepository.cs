@@ -1,4 +1,5 @@
-﻿using CarRental.Domain.Entities;
+﻿using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList;
+using CarRental.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace CarRental.Application.Contracts.Persistence
     {
         bool CityAndStreetAlreadyExist(string city, string street);
         bool IsCarAddressExist(int carAddressId);
+        Task<List<CarAddressDto>> GetCarAddressesAsync(string mark, string model);
     }
 }

@@ -18,10 +18,6 @@ namespace CarRental.Application.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Car, CarDto>();
-            CreateMap<Car, PriceCategoryDto>();
-            CreateMap<PriceCategory, PriceCategoryDto>();
-            CreateMap<PriceCategoryDto, CarDto>();
             CreateMap<CarAddress, CarAddressDto>().ReverseMap();
             CreateMap<CarAddress, UpdateCarAddressCommand>().ReverseMap();
             CreateMap<Car, UpdateCarCommand>().ReverseMap();

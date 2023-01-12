@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authorization;
 using CarRental.Application.Functions.Cars.Commands.AddCar;
 using CarRental.Application.Functions.Cars.Commands.DeleteCar;
 using CarRental.Application.Functions.Cars.Commands.UpdateCar;
+using CarRental.Application.Functions.Cars.Queries.GetCarModelsCommon;
+using CarRental.Application.Functions.Cars.Queries.GetCarsByCarAddress;
 
 namespace CarRental.Api.Controllers
 {
@@ -24,14 +26,21 @@ namespace CarRental.Api.Controllers
 
         [HttpGet(Name = "GetAllCars")]
         //[Authorize(Roles = "Admin,Manager")]
-        public async Task<ActionResult<List<CarDto>>> GetAllCars()
+        public async Task<ActionResult<List<CarsDto>>> GetAllCars()
         {
             var carList = await _mediator.Send(new GetAllCarsListQuery());
             return Ok(carList);
         }
 
+        [HttpGet("get-by-address", Name = "GetCarsByAddress")]
+        public async Task<ActionResult<List<CarsDto>>> GetCarsByAddress([FromQuery] int id)
+        {
+            var carList = await _mediator.Send(new GetCarByAddressQuery() { Id = id});
+            return Ok(carList);
+        }
+
         [HttpGet("{id}", Name = "GetCarById")]
-        public async Task<ActionResult<CarDto>> GetCarById(int id)
+        public async Task<ActionResult<CarsDto>> GetCarById(int id)
         {
             var carById = await _mediator.Send(new GetCarByIdQuery() { Id = id});
             return Ok(carById);

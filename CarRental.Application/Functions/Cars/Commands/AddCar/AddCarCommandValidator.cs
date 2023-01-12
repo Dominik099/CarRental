@@ -52,7 +52,7 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
             RuleFor(x => x.RegistrationNumber)
                 .NotEmpty()
                 .WithMessage("Registration number must not be empty")
-                .MaximumLength(6);
+                .MaximumLength(7);
                 
         }
 

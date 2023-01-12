@@ -11,6 +11,7 @@ using CarRental.Common.Abstractions.Exceptions;
 using System.IO;
 using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
 using CarRental.Application.Functions.Cars.Commands.AddCar;
+using CarRental.Application.Functions.Cars.Queries.GetCarModelsCommon;
 
 namespace CarRental.Persistence.EF.Repositories
 {
@@ -41,6 +42,22 @@ namespace CarRental.Persistence.EF.Repositories
             }
 
             return checkedLicense;
+        }
+
+        public async Task<List<CarsDto>> GetCarsByCarAddressAsync(int id)
+        {
+            var cars = await _dbContext.Cars.Where(x => x.CarAddressId == id)
+                .GroupBy(x => new { x.Mark, x.Model })
+                .Select(x => new CarsDto { Mark = x.Key.Mark, Model = x.Key.Model }).ToListAsync();
+
+            return cars;
+        }
+
+        public async Task<List<CarsDto>> GetCarsListAsync()
+        {
+            var carsList = await _dbContext.Cars.GroupBy(x => new { x.Mark, x.Model }).Select(x => new CarsDto { Mark = x.Key.Mark, Model = x.Key.Model }).ToListAsync();
+
+            return carsList;
         }
 
         public Task<bool> IsCarAlreadyExistAsync(AddCarCommand car)

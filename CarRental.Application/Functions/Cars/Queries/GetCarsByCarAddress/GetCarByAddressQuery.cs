@@ -6,9 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Application.Functions.Cars.Queries.GetCarsList
+namespace CarRental.Application.Functions.Cars.Queries.GetCarsByCarAddress
 {
-    public class GetAllCarsListQuery : IRequest<List<CarsDto>>
+    public class GetCarByAddressQuery : IRequest<List<CarsDto>>
     {
+        public int Id { get; set; }
     }
 }

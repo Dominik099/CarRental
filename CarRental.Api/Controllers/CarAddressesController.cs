@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
 using CarRental.Application.Functions.CarAddresses.Commands.DeleteCarAddress;
 using CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress;
+using CarRental.Domain.Entities;
+using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressByCar;
 
 namespace CarRental.Api.Controllers
 {
@@ -25,6 +27,13 @@ namespace CarRental.Api.Controllers
         public async Task<ActionResult<List<CarAddressDto>>> GetAllAddresses()
         {
             var carList = await _mediator.Send(new GetCarAddressesListQuery());
+            return Ok(carList);
+        }
+
+        [HttpGet("get-by-car", Name = "GetCarAddresses")]
+        public async Task<ActionResult<List<CarAddress>>> GetCarAddresses([FromQuery] int carId)
+        {
+            var carList = await _mediator.Send(new GetCarAddressByCarQuery() { CarId = carId});
             return Ok(carList);
         }
 

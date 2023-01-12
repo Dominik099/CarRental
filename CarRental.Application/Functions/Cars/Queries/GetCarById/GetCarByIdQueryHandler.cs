@@ -9,23 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using MediatR;
 using CarRental.Application.Functions.RentalCalculator.Exceptions;
+using CarRental.Application.Functions.Cars.Queries.GetCarModelsCommon;
 
 namespace CarRental.Application.Functions.Cars.Queries.GetCarById
 {
-    public class GetCarByIdQueryHandler : IRequestHandler<GetCarByIdQuery, CarDto>
+    public class GetCarByIdQueryHandler : IRequestHandler<GetCarByIdQuery, CarsDto>
     {
-        private readonly IAsyncRepository<Car> _carRepository;
-        private readonly IAsyncRepository<PriceCategory> _priceCategoryRepository;
-        private readonly IMapper _mapper;
+        private readonly ICarRepository _carRepository;
 
-        public GetCarByIdQueryHandler(IMapper mapper, IAsyncRepository<Car> carRepository, IAsyncRepository<PriceCategory> priceCategoryRepository)
+        public GetCarByIdQueryHandler(ICarRepository carRepository)
         {
-            _mapper = mapper;
             _carRepository = carRepository;
-            _priceCategoryRepository = priceCategoryRepository;
         }
 
-        public async Task<CarDto> Handle(GetCarByIdQuery request, CancellationToken cancellationToken)
+        public async Task<CarsDto> Handle(GetCarByIdQuery request, CancellationToken cancellationToken)
         {
 
             var car = await _carRepository.GetByIdAsync(request.Id);
@@ -35,13 +32,13 @@ namespace CarRental.Application.Functions.Cars.Queries.GetCarById
                 throw new CarNotFoundException();
             }
 
-            var carMapped = _mapper.Map<CarDto>(car);
+            var carDto = new CarsDto()
+            {
+                Mark = car.Mark,
+                Model = car.Model,
+            };
 
-            var priceCategory = await _priceCategoryRepository.GetByIdAsync(car.PriceCategoryId);
-
-            carMapped.PriceCategory = _mapper.Map<PriceCategoryDto>(priceCategory);
-
-            return carMapped;
+            return carDto;
 
 
         }
