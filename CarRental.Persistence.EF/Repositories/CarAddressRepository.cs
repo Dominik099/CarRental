@@ -40,9 +40,9 @@ namespace CarRental.Persistence.EF.Repositories
             var carAddressList = new List<CarAddressDto>();
 
             var addressId = await _dbContext.Cars.Where(x => x.Mark.Equals(mark) && x.Model.Equals(model)).GroupBy(x => new { x.CarAddressId })
-                .Select(x => new CarAddressIdDto {Id = x.Key.CarAddressId}).ToListAsync();
-            
-            if(addressId == null)
+                .Select(x => new CarAddressIdDto { Id = x.Key.CarAddressId }).ToListAsync();
+
+            if (addressId == null)
             {
                 throw new CarAddressNotFoundException();
             }
