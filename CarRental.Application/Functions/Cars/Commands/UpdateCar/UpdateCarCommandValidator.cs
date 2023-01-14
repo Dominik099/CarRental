@@ -33,17 +33,17 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
                 .WithMessage("Average fuel consumption must not be empty")
                 .PrecisionScale(3, 1, false); ;
 
-            RuleFor(x => x.CarAddressId)
-                .NotEmpty()
-                .WithMessage("Address must not be empty");
+            //RuleFor(x => x.CarAddressId)
+            //    .NotEmpty()
+            //    .WithMessage("Address must not be empty");
 
             RuleFor(x => x.PriceCategoryId)
                 .NotEmpty()
                 .WithMessage("Price category must not be empty");
 
-            RuleFor(x => x)
-                .Must(IsAddressExist)
-                .WithMessage("The address with the specified ID number does not exist");
+            //RuleFor(x => x)
+            //    .Must(IsAddressExist)
+            //    .WithMessage("The address with the specified ID number does not exist");
 
             RuleFor(x => x)
                 .Must(IsPriceCategoryExist)
@@ -55,12 +55,12 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
                 .MaximumLength(6);
         }
 
-        private bool IsAddressExist(UpdateCarCommand car)
-        {
-            var result = _carAddressRepository.IsCarAddressExist(car.CarAddressId);
+        //private bool IsAddressExist(UpdateCarCommand car)
+        //{
+        //    var result = _carAddressRepository.IsCarAddressExist(car.CarAddressId);
 
-            return result;
-        }
+        //    return result;
+        //}
 
         private bool IsPriceCategoryExist(UpdateCarCommand priceCategory)
         {

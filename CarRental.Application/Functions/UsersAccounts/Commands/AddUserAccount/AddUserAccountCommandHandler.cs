@@ -32,7 +32,7 @@ namespace CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount
                 FirstName = command.FirstName,
                 LastName = command.LastName,
                 DateOfBirth = command.DateOfBirth,
-                RoleId = 2,
+                RoleId = 3,
             };
 
             var hashedPassword = _passwordHasher.HashPassword(newUser, command.Password);

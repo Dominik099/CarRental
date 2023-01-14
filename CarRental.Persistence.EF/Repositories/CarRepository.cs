@@ -79,17 +79,5 @@ namespace CarRental.Persistence.EF.Repositories
 
             return numberOfCars;
         }
-
-        //public async Task<Car> FindAndUpdateAlreadyExistCar(AddCarCommand car)
-        //{
-        //    var markAlreadyExist = await _dbContext.Cars
-        //        .Where(x => x.Mark == car.Mark && x.Model == car.Model
-        //        && x.CarAddressId == car.CarAddressId)
-        //        .FirstOrDefaultAsync();
-
-
-        //    return markAlreadyExist;
-
-        //}
     }
 }

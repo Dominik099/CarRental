@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CarRental.Application.Authorization.AuthorizationByCarAddressOwner;
+using CarRental.Application.Authorization.Common;
 using CarRental.Application.Contracts.Persistence;
 using CarRental.Application.Functions.CarAddresses.Exceptions;
 using CarRental.Domain.Entities;

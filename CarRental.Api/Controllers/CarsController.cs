@@ -10,6 +10,8 @@ using CarRental.Application.Functions.Cars.Commands.DeleteCar;
 using CarRental.Application.Functions.Cars.Commands.UpdateCar;
 using CarRental.Application.Functions.Cars.Queries.GetCarModelsCommon;
 using CarRental.Application.Functions.Cars.Queries.GetCarsByCarAddress;
+using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
+using System.Security.Claims;
 
 namespace CarRental.Api.Controllers
 {
@@ -49,6 +51,7 @@ namespace CarRental.Api.Controllers
         [HttpPost("add", Name = "AddCar")]
         public async Task<ActionResult> AddCar([FromQuery] AddCarCommand car)
         {
+            car.User = User;
             var newCar = await _mediator.Send(car);
             return Ok();
         }
@@ -56,13 +59,14 @@ namespace CarRental.Api.Controllers
         [HttpDelete("delete", Name = "DeleteCar")]
         public async Task<ActionResult> DeleteCar([FromQuery] int id)
         {
-            var deletedCar = await _mediator.Send(new DeleteCarCommand() { Id = id});
+            var deletedCar = await _mediator.Send(new DeleteCarCommand() { Id = id, User = User});
             return Ok();
         }
 
         [HttpPut("update", Name = "UpdateCar")]
         public async Task<ActionResult> UpdateCar([FromQuery] UpdateCarCommand updateCarCommand)
         {
+            updateCarCommand.User = User;
             var update = await _mediator.Send(updateCarCommand);
 
             return Ok();

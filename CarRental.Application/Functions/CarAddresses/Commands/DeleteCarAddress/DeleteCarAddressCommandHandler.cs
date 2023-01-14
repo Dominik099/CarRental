@@ -1,4 +1,4 @@
-﻿using CarRental.Application.Authorization.AuthorizationByCarAddressOwner;
+﻿using CarRental.Application.Authorization.Common;
 using CarRental.Application.Contracts.Persistence;
 using CarRental.Application.Functions.CarAddresses.Exceptions;
 using CarRental.Domain.Entities;
@@ -32,7 +32,7 @@ namespace CarRental.Application.Functions.CarAddresses.Commands.DeleteCarAddress
             }
 
             var authorizationResult = _authorizationService.AuthorizeAsync(request.User, carAddress,
-                new ResourceOperationRequirement(ResourceOperation.Update)).Result;
+                new ResourceOperationRequirement(ResourceOperation.Delete)).Result;
 
             if (!authorizationResult.Succeeded)
             {
