@@ -25,7 +25,7 @@ namespace CarRental.Api.Controllers
         }
 
         [HttpGet(Name = "GetAllCars")]
-        //[Authorize(Roles = "Admin,Manager")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<List<CarsDto>>> GetAllCars()
         {
             var carList = await _mediator.Send(new GetAllCarsListQuery());

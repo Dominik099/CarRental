@@ -12,6 +12,8 @@ namespace CarRental.Domain.Entities
         public string City { get; set; }
         public string Street { get; set; }
         public string PostalCode { get; set; }
+        public int? AddedById { get; set; }
+        public virtual User AddedBy { get; set; }
 
         public List<Car> Cars { get; set; } = new List<Car>();
     }

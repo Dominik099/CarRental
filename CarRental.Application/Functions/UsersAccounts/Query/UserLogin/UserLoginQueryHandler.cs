@@ -15,8 +15,8 @@ using CarRental.Application.Functions.Cars.Queries.GetCarsList;
 using System.Runtime.ConstrainedExecution;
 using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
-using CarRental.Api;
 using System.IdentityModel.Tokens.Jwt;
+using CarRental.Application;
 using System.Collections;
 
 namespace CarRental.Application.Functions.UsersAccounts.Query.UserLogin

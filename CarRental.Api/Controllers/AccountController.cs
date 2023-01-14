@@ -30,7 +30,7 @@ namespace CarRental.Api.Controllers
         {
             var token = await _mediator.Send(userLoginQuery);
             var tokenString = token.ToString();
-            return Ok(token);
+            return Ok(token.Token);
         }
     }
 }

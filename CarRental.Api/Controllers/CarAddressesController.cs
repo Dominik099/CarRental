@@ -9,6 +9,9 @@ using CarRental.Application.Functions.CarAddresses.Commands.DeleteCarAddress;
 using CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress;
 using CarRental.Domain.Entities;
 using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressByCar;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using NuGet.Protocol;
 
 namespace CarRental.Api.Controllers
 {
@@ -47,15 +50,18 @@ namespace CarRental.Api.Controllers
         [HttpPost("add", Name = "AddCarAddress")]
         public async Task<ActionResult<AddCarAddressCommandResponse>> AddCarAddress([FromQuery] AddCarAddressCommand addCarAddressCommand)
         {
+            addCarAddressCommand.UserId = int.Parse(User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value);
             var newCarAddress = await _mediator.Send(addCarAddressCommand);
 
             return Ok(newCarAddress);
         }
 
         [HttpDelete("delete", Name = "DeleteCarAddress")]
+        [Authorize]
         public async Task<ActionResult> DeleteCarAddress([FromQuery] int id)
-        {
-            var deletedCarAddress = await _mediator.Send(new DeleteCarAddressCommand() { Id = id});
+        {           
+
+            var deletedCarAddress = await _mediator.Send(new DeleteCarAddressCommand() { Id = id, User = User});
 
             return NoContent();
         }
@@ -63,6 +69,8 @@ namespace CarRental.Api.Controllers
         [HttpPut("update", Name = "UpdateCarAddress")]
         public async Task<ActionResult> UpdateCarAddress([FromQuery] UpdateCarAddressCommand updateCarAddressCommand)
         {
+            updateCarAddressCommand.User = User;
+
             var updatedCarAddress = await _mediator.Send(updateCarAddressCommand);
 
             return NoContent();

@@ -1,4 +1,5 @@
-﻿using CarRental.Application.Functions.RentalCalculator.Exceptions;
+﻿using CarRental.Application.Functions.CarAddresses.Exceptions;
+using CarRental.Application.Functions.RentalCalculator.Exceptions;
 using CarRental.Application.Functions.UsersAccounts.Exceptions;
 using CarRental.Common.Abstractions.Exceptions;
 using FluentValidation;
@@ -20,6 +21,10 @@ namespace CarRental.Application.Middleware
             try
             {
                 await next.Invoke(context);
+            }
+            catch (ForbidException forbidException)
+            {
+                context.Response.StatusCode = 403;
             }
             catch (InvalidEmailOrPasswordException invalidEmailOrPasswordException)
             {

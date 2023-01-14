@@ -2,6 +2,7 @@
 using CarRental.Application.Functions.CarAddresses.Exceptions;
 using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressList;
 using CarRental.Application.Functions.CarAddresses.Queries.GetCarAddressModelsCommon;
+using CarRental.Application.Functions.Cars.Queries.GetCarModelsCommon;
 using CarRental.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;

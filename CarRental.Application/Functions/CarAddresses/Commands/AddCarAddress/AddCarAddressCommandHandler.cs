@@ -1,6 +1,7 @@
 ﻿using CarRental.Application.Contracts.Persistence;
 using CarRental.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress
                 Street = request.Street,
                 PostalCode = request.PostalCode,
             };
+
+            newCarAddress.AddedById = request.UserId;
 
             newCarAddress = await _carAddressRepository.AddAsync(newCarAddress);
 

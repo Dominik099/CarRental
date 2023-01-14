@@ -30,6 +30,8 @@ using CarRental.Application.Functions.UsersAccounts.Query.UserLogin;
 using CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress;
 using CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress;
 using CarRental.Application.Functions.Cars.Commands.AddCar;
+using Microsoft.AspNetCore.Authorization;
+using CarRental.Application.Authorization.AuthorizationByCarAddressOwner;
 
 namespace CarRental.Api
 {
@@ -61,7 +63,11 @@ namespace CarRental.Api
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey)),
                 };
             });
-
+            builder.Services.AddAuthorization(options =>
+            {
+                
+            });
+            builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
             builder.Services.AddControllers().AddFluentValidation();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

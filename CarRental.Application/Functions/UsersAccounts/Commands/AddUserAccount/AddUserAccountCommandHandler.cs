@@ -32,7 +32,7 @@ namespace CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount
                 FirstName = command.FirstName,
                 LastName = command.LastName,
                 DateOfBirth = command.DateOfBirth,
-                RoleId = 1,
+                RoleId = 2,
             };
 
             var hashedPassword = _passwordHasher.HashPassword(newUser, command.Password);
@@ -41,7 +41,7 @@ namespace CarRental.Application.Functions.UsersAccounts.Commands.AddUserAccount
 
             newUser = await _userRepository.AddAsync(newUser);
 
-            return new AddUserAccountCommandResponse(/*newUser.Id*/)
+            return new AddUserAccountCommandResponse()
             {
                 Id = newUser.Id
             };
