@@ -33,6 +33,7 @@ using CarRental.Application.Functions.Cars.Commands.AddCar;
 using Microsoft.AspNetCore.Authorization;
 using CarRental.Application.Authorization.AuthorizationByCarAddressOwner;
 using CarRental.Application.Authorization;
+using CarRental.Application.Authorization.AgeAuthorization;
 
 namespace CarRental.Api
 {
@@ -66,8 +67,9 @@ namespace CarRental.Api
             });
             builder.Services.AddAuthorization(options =>
             {
-                
+                options.AddPolicy("Atleast18", builder => builder.AddRequirements(new MinimumAgeRequirement(18)));
             });
+            builder.Services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
             builder.Services.AddScoped<IAuthorizationHandler, CarAddressResourceOperationRequirementHandler>();
             builder.Services.AddControllers().AddFluentValidation();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

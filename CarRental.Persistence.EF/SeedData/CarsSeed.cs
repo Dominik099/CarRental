@@ -24,7 +24,8 @@ namespace CarRental.Persistence.EF.SeedData
                 AVGFuelConsumption = 6.2m,
                 RegistrationNumber = "RZ52475",
                 PriceCategoryId = PriceCategoriesSeedId.Standard,
-                CarAddressId = CarAddressesSeedId.Rzeszow
+                CarAddressId = CarAddressesSeedId.Rzeszow,
+                IsAvailable = true,
             };
             cars.Add(car1);
 
@@ -36,7 +37,8 @@ namespace CarRental.Persistence.EF.SeedData
                 AVGFuelConsumption = 10.5m,
                 RegistrationNumber = "KR63975",
                 PriceCategoryId = PriceCategoriesSeedId.Standard,
-                CarAddressId = CarAddressesSeedId.Krakow
+                CarAddressId = CarAddressesSeedId.Krakow,
+                IsAvailable = true,
             };
             cars.Add(car2);
 
@@ -48,7 +50,8 @@ namespace CarRental.Persistence.EF.SeedData
                 AVGFuelConsumption = 5.5m,
                 RegistrationNumber = "RZ12846",
                 PriceCategoryId = PriceCategoriesSeedId.Standard,
-                CarAddressId = CarAddressesSeedId.Rzeszow
+                CarAddressId = CarAddressesSeedId.Rzeszow,
+                IsAvailable = true,
             };
             cars.Add(car3);
 
@@ -61,6 +64,7 @@ namespace CarRental.Persistence.EF.SeedData
                 RegistrationNumber = "RZ91476",
                 PriceCategoryId = PriceCategoriesSeedId.Premium,
                 CarAddressId = CarAddressesSeedId.Rzeszow,
+                IsAvailable = true,
             };
             cars.Add(car4);
 
@@ -73,6 +77,7 @@ namespace CarRental.Persistence.EF.SeedData
                 RegistrationNumber = "KR71584",
                 PriceCategoryId = PriceCategoriesSeedId.Premium,
                 CarAddressId = CarAddressesSeedId.Krakow,
+                IsAvailable = true,
             };
             cars.Add(car5);
 
@@ -85,6 +90,7 @@ namespace CarRental.Persistence.EF.SeedData
                 RegistrationNumber = "KR14582",
                 PriceCategoryId = PriceCategoriesSeedId.Medium,
                 CarAddressId = CarAddressesSeedId.Krakow,
+                IsAvailable = true,
             };
             cars.Add(car6);
 
@@ -97,6 +103,7 @@ namespace CarRental.Persistence.EF.SeedData
                 RegistrationNumber = "KR61483",
                 PriceCategoryId = PriceCategoriesSeedId.Medium,
                 CarAddressId = CarAddressesSeedId.Krakow,
+                IsAvailable = true,
             };
             cars.Add(car7);
 
@@ -109,6 +116,7 @@ namespace CarRental.Persistence.EF.SeedData
                 RegistrationNumber = "DW31674",
                 PriceCategoryId = PriceCategoriesSeedId.Basic,
                 CarAddressId = CarAddressesSeedId.Wroclaw,
+                IsAvailable = true,
             };
             cars.Add(car8);
 
@@ -121,6 +129,7 @@ namespace CarRental.Persistence.EF.SeedData
                 RegistrationNumber = "DW71463",
                 PriceCategoryId = PriceCategoriesSeedId.Basic,
                 CarAddressId = CarAddressesSeedId.Wroclaw,
+                IsAvailable = true,
             };
             cars.Add(car9);
 

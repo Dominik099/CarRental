@@ -50,6 +50,7 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
                 RegistrationNumber= request.RegistrationNumber,
                 CarAddressId = request.CarAddressId,
                 PriceCategoryId = request.PriceCategoryId,
+                IsAvailable = true,
             };
 
             newCar = await _carRepository.AddAsync(newCar);

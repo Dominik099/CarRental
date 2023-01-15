@@ -13,6 +13,7 @@ namespace CarRental.Domain.Entities
         public string Model { get; set; }
         public decimal AVGFuelConsumption { get; set; }
         public string RegistrationNumber { get; set; }
+        public bool IsAvailable { get; set; }
 
         public CarAddress CarAddress { get; set; }
         public int CarAddressId { get; set; }

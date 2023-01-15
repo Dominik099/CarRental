@@ -17,6 +17,7 @@ namespace CarRental.Persistence.EF
         public DbSet<PriceCategory> PriceCategories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +26,7 @@ namespace CarRental.Persistence.EF
             new PriceCategoryConfiguration().Configure(modelBuilder.Entity<PriceCategory>());
             new RoleConfiguration().Configure(modelBuilder.Entity<Role>());
             new UserConfiguration().Configure(modelBuilder.Entity<User>());
+            new RentalConfiguration().Configure(modelBuilder.Entity<Rental>());
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarRentalContext).Assembly);
 
