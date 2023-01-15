@@ -1,7 +1,5 @@
 ﻿using CarRental.Application.Contracts.Persistence;
-using CarRental.Application.Functions.RentalCalculator.Exceptions;
 using CarRental.Application.RentalCalculator;
-using CarRental.Domain.Entities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -9,37 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Application.Functions.RentalCalculator.Queries
+namespace CarRental.Application.Functions.CarRental.Commands.CarRentedCommand
 {
-    public class RentalCalculatedQueryValidator : AbstractValidator<RentalCalculatedQuery>
+    public class CarRentalCommandValidator : AbstractValidator<CarRentalCommand>
     {
         private readonly ICarRepository _carRepository;
 
-        public RentalCalculatedQueryValidator(ICarRepository carRepository)
+        public CarRentalCommandValidator(ICarRepository carRepository)
         {
-            _carRepository= carRepository;
+            _carRepository = carRepository;
 
             RuleFor(x => x.CarId)
                 .NotEmpty()
                 .WithMessage("You must select car")
                 .NotNull();
 
-            RuleFor(x => x.EstimatedKilometers)
-                .NotEmpty()
-                .WithMessage("You must enter estimated kilometers")
-                .NotNull()
-                .LessThan(10000)
-                .WithMessage("The anticipated number of kilometres must be less than 10000")
-                .GreaterThan(0)
-                .WithMessage("The anticipated number of kilometres must be greater than 0");
-
-            RuleFor(x => x.DriverLicenceDate)
+            RuleFor(x => x.DriverLicenseDate)
                 .NotEmpty()
                 .WithMessage("You must enter the date of obtaining your driving license")
                 .NotNull()
                 .LessThan(DateTime.Now);
 
-            RuleFor(x => x.RentalDate)
+            RuleFor(x => x.RentDate)
                 .NotEmpty()
                 .WithMessage("Yo must enter the date of rental car")
                 .NotNull()
@@ -50,7 +39,7 @@ namespace CarRental.Application.Functions.RentalCalculator.Queries
                 .NotEmpty()
                 .WithMessage("Yo must enter the date of return car")
                 .NotNull()
-                .GreaterThan(x => x.RentalDate.Date)
+                .GreaterThan(x => x.RentDate.Date)
                 .WithMessage("The return date must be greater than the rental date");
 
             RuleFor(x => x)
@@ -58,9 +47,9 @@ namespace CarRental.Application.Functions.RentalCalculator.Queries
                 .WithMessage("You must have had a driving license for more than 3 years to rent a premium car");
         }
 
-        private bool DriverIsNotTooYoung(RentalCalculatedQuery input)
+        private bool DriverIsNotTooYoung(CarRentalCommand input)
         {
-            var checkedLicense = _carRepository.DriverIsNotTooYoung(input.CarId, input.DriverLicenceDate);
+            var checkedLicense = _carRepository.DriverIsNotTooYoung(input.CarId, input.DriverLicenseDate);
 
             return checkedLicense;
         }

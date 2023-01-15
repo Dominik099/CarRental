@@ -13,8 +13,10 @@ namespace CarRental.Application.Authorization.Common
         Get,
         Update,
         Delete,
-        AddCar
+        AddCar,
+        RenturnCar
     }
+
     public class ResourceOperationRequirement : IAuthorizationRequirement
     {
         public ResourceOperationRequirement(ResourceOperation resourceOperation)

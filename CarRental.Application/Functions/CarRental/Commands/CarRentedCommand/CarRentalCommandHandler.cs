@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Application.Functions.CarRental.Commands
+namespace CarRental.Application.Functions.CarRental.Commands.CarRentedCommand
 {
     public class CarRentalCommandHandler : IRequestHandler<CarRentalCommand, CarRentalCommandResponse>
     {

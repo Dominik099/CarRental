@@ -35,7 +35,7 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
             var carAddress = await _carAddressRepository.GetByIdAsync(request.CarAddressId);
 
             var authorizationResult = _authorizationService.AuthorizeAsync(_userContext.User, carAddress,
-    new ResourceOperationRequirement(ResourceOperation.AddCar)).Result;
+                new ResourceOperationRequirement(ResourceOperation.AddCar)).Result;
 
             if (!authorizationResult.Succeeded)
             {

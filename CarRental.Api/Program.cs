@@ -34,6 +34,7 @@ using Microsoft.AspNetCore.Authorization;
 using CarRental.Application.Authorization.AuthorizationByCarAddressOwner;
 using CarRental.Application.Authorization;
 using CarRental.Application.Authorization.AgeAuthorization;
+using CarRental.Application.Functions.CarRental.Commands.CarRentedCommand;
 
 namespace CarRental.Api
 {
@@ -94,6 +95,7 @@ namespace CarRental.Api
             builder.Services.AddScoped<ICarRepository, CarRepository>();
             builder.Services.AddScoped<ICarAddressRepository, CarAddressRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IRentalRepository, RentalRepository>();
             builder.Services.AddScoped<IPriceCategoryRepository, PriceCategoryRepository>();
             builder.Services.AddScoped<ErrorHandlingMiddleware>();
             builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
@@ -103,6 +105,7 @@ namespace CarRental.Api
             builder.Services.AddScoped<IValidator<AddCarAddressCommand>, AddCarAddressCommandValidator>();
             builder.Services.AddScoped<IValidator<UpdateCarAddressCommand>, UpdateCarAddressValidator>();
             builder.Services.AddScoped<IValidator<AddCarCommand>, AddCarCommandValidator>();
+            builder.Services.AddScoped<IValidator<CarRentalCommand>, CarRentalCommandValidator>();
             builder.Services.AddScoped<IUserContext, UserContext>();
             builder.Services.AddHttpContextAccessor();
 
