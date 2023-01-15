@@ -51,7 +51,7 @@ namespace CarRental.Api.Controllers
         [HttpPost("add", Name = "AddCar")]
         public async Task<ActionResult> AddCar([FromQuery] AddCarCommand car)
         {
-            car.User = User;
+            //car.User = User;
             var newCar = await _mediator.Send(car);
             return Ok();
         }
@@ -59,14 +59,14 @@ namespace CarRental.Api.Controllers
         [HttpDelete("delete", Name = "DeleteCar")]
         public async Task<ActionResult> DeleteCar([FromQuery] int id)
         {
-            var deletedCar = await _mediator.Send(new DeleteCarCommand() { Id = id, User = User});
+            var deletedCar = await _mediator.Send(new DeleteCarCommand() { Id = id, /*User = User*/});
             return Ok();
         }
 
         [HttpPut("update", Name = "UpdateCar")]
         public async Task<ActionResult> UpdateCar([FromQuery] UpdateCarCommand updateCarCommand)
         {
-            updateCarCommand.User = User;
+            //updateCarCommand.User = User;
             var update = await _mediator.Send(updateCarCommand);
 
             return Ok();

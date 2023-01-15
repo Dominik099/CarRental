@@ -17,6 +17,6 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
 
         public int CarAddressId { get; set; }
         public int PriceCategoryId { get; set; }
-        public ClaimsPrincipal User { get; set; }
+        //public ClaimsPrincipal User { get; set; }
     }
 }

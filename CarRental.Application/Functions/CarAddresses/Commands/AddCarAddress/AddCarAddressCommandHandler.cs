@@ -1,4 +1,5 @@
-﻿using CarRental.Application.Contracts.Persistence;
+﻿using CarRental.Application.Authorization;
+using CarRental.Application.Contracts.Persistence;
 using CarRental.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -13,10 +14,12 @@ namespace CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress
     public class AddCarAddressCommandHandler : IRequestHandler<AddCarAddressCommand, AddCarAddressCommandResponse>
     {
         private readonly IAsyncRepository<CarAddress> _carAddressRepository;
+        private readonly IUserContext _userContext;
 
-        public AddCarAddressCommandHandler(IAsyncRepository<CarAddress> carAddressRepository)
+        public AddCarAddressCommandHandler(IAsyncRepository<CarAddress> carAddressRepository, IUserContext userContext)
         {
             _carAddressRepository = carAddressRepository;
+            _userContext= userContext;
         }
         public async Task<AddCarAddressCommandResponse> Handle(AddCarAddressCommand request, CancellationToken cancellationToken)
         {
@@ -27,7 +30,7 @@ namespace CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress
                 PostalCode = request.PostalCode,
             };
 
-            newCarAddress.AddedById = request.UserId;
+            newCarAddress.AddedById = _userContext.GetUserId;
 
             newCarAddress = await _carAddressRepository.AddAsync(newCarAddress);
 

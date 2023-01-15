@@ -14,6 +14,6 @@ namespace CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress
         public string City { get; set; }
         public string Street { get; set; }
         public string PostalCode { get; set; }
-        public ClaimsPrincipal User { get; set; }
+        //public ClaimsPrincipal User { get; set; }
     }
 }

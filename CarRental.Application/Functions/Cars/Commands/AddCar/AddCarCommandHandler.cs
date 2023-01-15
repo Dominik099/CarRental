@@ -1,4 +1,5 @@
-﻿using CarRental.Application.Authorization.Common;
+﻿using CarRental.Application.Authorization;
+using CarRental.Application.Authorization.Common;
 using CarRental.Application.Contracts.Persistence;
 using CarRental.Application.Functions.CarAddresses.Exceptions;
 using CarRental.Domain.Entities;
@@ -17,30 +18,23 @@ namespace CarRental.Application.Functions.Cars.Commands.AddCar
         private readonly ICarAddressRepository _carAddressRepository;
         private readonly ICarRepository _carRepository;
         private readonly IAuthorizationService _authorizationService;
+        private readonly IUserContext _userContext;
 
         public AddCarCommandHandler(ICarAddressRepository carAddressRepository, IAuthorizationService authorizationService, 
-            ICarRepository carRepository)
+            ICarRepository carRepository, IUserContext userContext)
         {
             _carAddressRepository = carAddressRepository;
             _authorizationService = authorizationService;
             _carRepository = carRepository;
+            _userContext = userContext;
         }
 
         public async Task<Unit> Handle(AddCarCommand request, CancellationToken cancellationToken)
         {
-            //var carAlreadyExist = await _carRepository.IsCarAlreadyExistAsync(request);
-
-            //if (carAlreadyExist)
-            //{
-            //    var update = await _carRepository.FindAndUpdateAlreadyExistCar(request);
-            //    _carRepository.UpdateAsync(update);
-
-            //    return Unit.Value;
-
-            //}
+ 
             var carAddress = await _carAddressRepository.GetByIdAsync(request.CarAddressId);
 
-            var authorizationResult = _authorizationService.AuthorizeAsync(request.User, carAddress,
+            var authorizationResult = _authorizationService.AuthorizeAsync(_userContext.User, carAddress,
     new ResourceOperationRequirement(ResourceOperation.AddCar)).Result;
 
             if (!authorizationResult.Succeeded)

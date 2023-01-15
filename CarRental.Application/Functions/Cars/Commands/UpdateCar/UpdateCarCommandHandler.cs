@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CarRental.Application.Authorization;
 using CarRental.Application.Authorization.Common;
 using CarRental.Application.Contracts.Persistence;
 using CarRental.Application.Functions.CarAddresses.Exceptions;
@@ -19,13 +20,15 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
         private readonly ICarRepository _carRepository;
         private readonly ICarAddressRepository _carAddressRepository;
         private readonly IAuthorizationService _authorizationService;
+        private readonly IUserContext _userContext;
 
         public UpdateCarCommandHandler(ICarRepository carRepository, IAuthorizationService authorizationService, 
-            ICarAddressRepository carAddressRepository)
+            ICarAddressRepository carAddressRepository, IUserContext userContext)
         {
             _carRepository = carRepository;
             _authorizationService = authorizationService;
             _carAddressRepository = carAddressRepository;
+            _userContext = userContext;
         }
 
         public async Task<Unit> Handle(UpdateCarCommand request, CancellationToken cancellationToken)
@@ -39,7 +42,7 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
 
             var carAddress = await _carAddressRepository.GetByIdAsync(car.CarAddressId);
 
-            var authorizationResult = _authorizationService.AuthorizeAsync(request.User, carAddress,
+            var authorizationResult = _authorizationService.AuthorizeAsync(_userContext.User, carAddress,
               new ResourceOperationRequirement(ResourceOperation.Update)).Result;
 
             if (!authorizationResult.Succeeded)
@@ -57,11 +60,6 @@ namespace CarRental.Application.Functions.Cars.Commands.UpdateCar
             await _carRepository.UpdateAsync(car);
 
             return Unit.Value;
-            //var car = _mapper.Map<Car>(request);
-
-            //await _carRepository.UpdateAsync(car);
-
-            //return Unit.Value;
         }
     }
 }

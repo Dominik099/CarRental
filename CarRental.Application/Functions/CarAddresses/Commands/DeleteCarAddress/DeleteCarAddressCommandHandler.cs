@@ -1,4 +1,5 @@
-﻿using CarRental.Application.Authorization.Common;
+﻿using CarRental.Application.Authorization;
+using CarRental.Application.Authorization.Common;
 using CarRental.Application.Contracts.Persistence;
 using CarRental.Application.Functions.CarAddresses.Exceptions;
 using CarRental.Domain.Entities;
@@ -16,10 +17,12 @@ namespace CarRental.Application.Functions.CarAddresses.Commands.DeleteCarAddress
     {
         private readonly IAsyncRepository<CarAddress> _carAddressRepository;
         private readonly IAuthorizationService _authorizationService;
-        public DeleteCarAddressCommandHandler(IAsyncRepository<CarAddress> carAddressRepository, IAuthorizationService authorizationService)
+        private readonly IUserContext _userContext;
+        public DeleteCarAddressCommandHandler(IAsyncRepository<CarAddress> carAddressRepository, IAuthorizationService authorizationService, IUserContext userContext)
         {
             _carAddressRepository = carAddressRepository;
             _authorizationService = authorizationService;
+            _userContext = userContext;
         }
 
         public async Task<Unit> Handle(DeleteCarAddressCommand request, CancellationToken cancellationToken)
@@ -31,7 +34,7 @@ namespace CarRental.Application.Functions.CarAddresses.Commands.DeleteCarAddress
                 throw new CarAddressNotFoundException();
             }
 
-            var authorizationResult = _authorizationService.AuthorizeAsync(request.User, carAddress,
+            var authorizationResult = _authorizationService.AuthorizeAsync(_userContext.User, carAddress,
                 new ResourceOperationRequirement(ResourceOperation.Delete)).Result;
 
             if (!authorizationResult.Succeeded)

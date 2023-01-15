@@ -32,7 +32,7 @@ using CarRental.Application.Functions.CarAddresses.Commands.UpdateCarAddress;
 using CarRental.Application.Functions.Cars.Commands.AddCar;
 using Microsoft.AspNetCore.Authorization;
 using CarRental.Application.Authorization.AuthorizationByCarAddressOwner;
-using CarRental.Application.Authorization.AuthorizationToOperateVehicles;
+using CarRental.Application.Authorization;
 
 namespace CarRental.Api
 {
@@ -101,6 +101,8 @@ namespace CarRental.Api
             builder.Services.AddScoped<IValidator<AddCarAddressCommand>, AddCarAddressCommandValidator>();
             builder.Services.AddScoped<IValidator<UpdateCarAddressCommand>, UpdateCarAddressValidator>();
             builder.Services.AddScoped<IValidator<AddCarCommand>, AddCarCommandValidator>();
+            builder.Services.AddScoped<IUserContext, UserContext>();
+            builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();
 

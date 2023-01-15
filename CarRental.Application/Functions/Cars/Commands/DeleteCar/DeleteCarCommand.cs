@@ -11,6 +11,6 @@ namespace CarRental.Application.Functions.Cars.Commands.DeleteCar
     public class DeleteCarCommand : IRequest<Unit>
     {
         public int Id { get; set; }
-        public ClaimsPrincipal User { get; set; }
+        //public ClaimsPrincipal User { get; set; }
     }
 }

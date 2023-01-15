@@ -50,7 +50,7 @@ namespace CarRental.Api.Controllers
         [HttpPost("add", Name = "AddCarAddress")]
         public async Task<ActionResult<AddCarAddressCommandResponse>> AddCarAddress([FromQuery] AddCarAddressCommand addCarAddressCommand)
         {
-            addCarAddressCommand.UserId = int.Parse(User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            //addCarAddressCommand.UserId = int.Parse(User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value);
             var newCarAddress = await _mediator.Send(addCarAddressCommand);
 
             return Ok(newCarAddress);
@@ -61,7 +61,7 @@ namespace CarRental.Api.Controllers
         public async Task<ActionResult> DeleteCarAddress([FromQuery] int id)
         {           
 
-            var deletedCarAddress = await _mediator.Send(new DeleteCarAddressCommand() { Id = id, User = User});
+            var deletedCarAddress = await _mediator.Send(new DeleteCarAddressCommand() { Id = id, /*User = User*/});
 
             return NoContent();
         }
@@ -69,7 +69,7 @@ namespace CarRental.Api.Controllers
         [HttpPut("update", Name = "UpdateCarAddress")]
         public async Task<ActionResult> UpdateCarAddress([FromQuery] UpdateCarAddressCommand updateCarAddressCommand)
         {
-            updateCarAddressCommand.User = User;
+            //updateCarAddressCommand.User = User;
 
             var updatedCarAddress = await _mediator.Send(updateCarAddressCommand);
 

@@ -12,6 +12,6 @@ namespace CarRental.Application.Functions.CarAddresses.Commands.AddCarAddress
         public string City { get; set; }
         public string Street { get; set; }
         public string PostalCode { get; set; }
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
     }
 }
